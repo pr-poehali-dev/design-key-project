@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1775465660712615854.html"
 	],
 	prefix: "",
 	theme: {
@@ -16,6 +17,10 @@ export default {
 			screens: {
 				'2xl': '1400px'
 			}
+		},
+		fontFamily: {
+			display: ['Cormorant', 'serif'],
+			body: ['Golos Text', 'sans-serif'],
 		},
 		extend: {
 			colors: {
@@ -88,7 +93,21 @@ export default {
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fadeIn 0.6s ease forwards',
+				'slide-up': 'slideUp 0.7s ease forwards',
+			},
+			keyframes: {
+				...{
+					'fade-in': {
+						from: { opacity: '0' },
+						to: { opacity: '1' },
+					},
+					'slide-up': {
+						from: { opacity: '0', transform: 'translateY(40px)' },
+						to: { opacity: '1', transform: 'translateY(0)' },
+					},
+				}
 			}
 		}
 	},
