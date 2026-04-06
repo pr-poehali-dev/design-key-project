@@ -35,6 +35,21 @@ const FAQ = [
   { q: "Сколько длится процесс от замера до переезда?", a: "Для квартиры — от 3 до 6 месяцев, для дома или коммерческого объекта — от 4 до 9 месяцев. Точные сроки прописываются в договоре." },
 ];
 
+const CALC_OBJECTS = [
+  { label: "Квартира", mult: 1.0 },
+  { label: "Дом / Коттедж", mult: 1.25 },
+  { label: "Офис", mult: 1.15 },
+  { label: "Ресторан / Кафе", mult: 1.4 },
+  { label: "Апартаменты", mult: 1.1 },
+];
+
+const CALC_PACKAGES = [
+  { label: "Концепция", pricePerSqm: 900, desc: "Стиль, мудборд, планировка, 3D" },
+  { label: "Дизайн-проект", pricePerSqm: 1600, desc: "+ Чертежи, развёртки, спецификации" },
+  { label: "Проект + надзор", pricePerSqm: 2400, desc: "+ Авторский надзор на ремонте" },
+  { label: "Под ключ", pricePerSqm: 3800, desc: "+ Комплектация, закупка, переезд" },
+];
+
 const PROBLEMS = [
   "Собирать миллионы чертежей и смет",
   "Связываться с разными подрядчиками и прорабами",
@@ -74,6 +89,11 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", type: "Квартира" });
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [calcArea, setCalcArea] = useState(70);
+  const [calcObj, setCalcObj] = useState(0);
+  const [calcPkg, setCalcPkg] = useState(1);
+  const calcPrice = Math.round(calcArea * CALC_PACKAGES[calcPkg].pricePerSqm * CALC_OBJECTS[calcObj].mult);
+
   const scrollTo = (id: string) => {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -87,7 +107,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-display text-lg tracking-wide text-foreground">Студия интерьера</span>
           <nav className="hidden md:flex items-center gap-7">
-            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["FAQ","faq"]].map(([l,id]) => (
+            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)}
                 className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {l}
@@ -104,7 +124,7 @@ export default function Index() {
         </div>
         {menuOpen && (
           <div className="md:hidden bg-background border-t border-border px-6 py-4 flex flex-col gap-3">
-            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["FAQ","faq"],["Контакт","contact"]].map(([l,id]) => (
+            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"],["Контакт","contact"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)} className="text-left font-body text-sm py-1">{l}</button>
             ))}
           </div>
@@ -141,7 +161,7 @@ export default function Index() {
                 className="bg-[hsl(36,55%,62%)] text-background font-body text-sm px-7 py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors">
                 Заказать замер
               </button>
-              <button onClick={() => scrollTo("contact")}
+              <button onClick={() => scrollTo("calculator")}
                 className="border border-border font-body text-sm text-foreground px-7 py-3.5 hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
                 Просчитать бюджет
               </button>
@@ -324,6 +344,110 @@ export default function Index() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CALCULATOR */}
+      <section id="calculator" className="py-20 border-y border-border bg-background">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal className="mb-14">
+            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Онлайн-расчёт</p>
+            <h2 className="font-display text-4xl font-medium text-foreground">Рассчитайте стоимость проекта</h2>
+          </Reveal>
+
+          <Reveal className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Controls */}
+            <div className="space-y-8">
+              {/* Area */}
+              <div>
+                <div className="flex justify-between items-baseline mb-3">
+                  <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase">Площадь объекта</label>
+                  <span className="font-display text-3xl font-medium text-[hsl(36,55%,62%)]">{calcArea} м²</span>
+                </div>
+                <input
+                  type="range" min={20} max={600} step={5} value={calcArea}
+                  onChange={e => setCalcArea(+e.target.value)}
+                  className="w-full h-px bg-border appearance-none cursor-pointer accent-[hsl(36,55%,62%)]"
+                  style={{ background: `linear-gradient(to right, hsl(36,55%,62%) ${((calcArea - 20) / 580) * 100}%, hsl(var(--border)) ${((calcArea - 20) / 580) * 100}%)` }}
+                />
+                <div className="flex justify-between mt-2">
+                  <span className="font-body text-xs text-muted-foreground">20 м²</span>
+                  <span className="font-body text-xs text-muted-foreground">600 м²</span>
+                </div>
+              </div>
+
+              {/* Object */}
+              <div>
+                <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase block mb-3">Тип объекта</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {CALC_OBJECTS.map((o, i) => (
+                    <button key={i} onClick={() => setCalcObj(i)}
+                      className={`py-2.5 px-3 font-body text-xs transition-colors text-left ${calcObj === i
+                        ? "bg-[hsl(36,55%,62%)] text-background"
+                        : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Package */}
+              <div>
+                <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase block mb-3">Пакет услуг</label>
+                <div className="space-y-2">
+                  {CALC_PACKAGES.map((p, i) => (
+                    <button key={i} onClick={() => setCalcPkg(i)}
+                      className={`w-full py-3 px-4 font-body text-sm transition-colors flex items-center justify-between ${calcPkg === i
+                        ? "bg-[hsl(36,55%,62%)] text-background"
+                        : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                      <span className="font-medium">{p.label}</span>
+                      <span className={`text-xs ${calcPkg === i ? "text-background/70" : "text-muted-foreground"}`}>{p.desc}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Result */}
+            <div className="bg-card border border-border p-8 sticky top-20">
+              <p className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase mb-6">Ориентировочная стоимость</p>
+
+              <div className="mb-8">
+                <div className="font-display text-6xl font-medium text-[hsl(36,55%,62%)] leading-none mb-2">
+                  {calcPrice.toLocaleString("ru-RU")}
+                </div>
+                <div className="font-body text-xl text-muted-foreground">рублей</div>
+              </div>
+
+              <div className="space-y-3 mb-8 pb-8 border-b border-border">
+                <div className="flex justify-between font-body text-sm">
+                  <span className="text-muted-foreground">Площадь</span>
+                  <span className="text-foreground">{calcArea} м²</span>
+                </div>
+                <div className="flex justify-between font-body text-sm">
+                  <span className="text-muted-foreground">Тип объекта</span>
+                  <span className="text-foreground">{CALC_OBJECTS[calcObj].label}</span>
+                </div>
+                <div className="flex justify-between font-body text-sm">
+                  <span className="text-muted-foreground">Пакет</span>
+                  <span className="text-foreground">{CALC_PACKAGES[calcPkg].label}</span>
+                </div>
+                <div className="flex justify-between font-body text-sm">
+                  <span className="text-muted-foreground">Ставка за м²</span>
+                  <span className="text-foreground">{(CALC_PACKAGES[calcPkg].pricePerSqm * CALC_OBJECTS[calcObj].mult).toLocaleString("ru-RU")} ₽</span>
+                </div>
+              </div>
+
+              <p className="font-body text-xs text-muted-foreground mb-5 leading-relaxed">
+                Расчёт ориентировочный. Точная стоимость определяется после замера и обсуждения деталей.
+              </p>
+
+              <button onClick={() => scrollTo("contact")}
+                className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors">
+                Обсудить проект
+              </button>
+            </div>
+          </Reveal>
         </div>
       </section>
 
