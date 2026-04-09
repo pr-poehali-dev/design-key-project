@@ -497,7 +497,7 @@ export default function Index() {
             <div className="space-y-3 pt-6 border-t border-border">
               {[
                 { icon: "Phone", text: "8 908 992-12-47" },
-                { icon: "Mail", text: "Studioda@bk.ru" },
+                { icon: "Mail", text: "Studioda.1@yandex.ru" },
                 { icon: "MapPin", text: "Москва, Санкт-Петербург, вся Россия" },
               ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center gap-3">

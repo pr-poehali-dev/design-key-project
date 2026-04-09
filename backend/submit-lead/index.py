@@ -1,10 +1,48 @@
 import json
 import os
+import smtplib
 import psycopg2
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+def send_email(name: str, phone: str, object_type: str, message: str):
+    """Отправляет письмо с заявкой на почту студии."""
+    smtp_host = "smtp.yandex.ru"
+    smtp_port = 465
+    sender = "Studioda.1@yandex.ru"
+    recipient = "Studioda.1@yandex.ru"
+    password = os.environ.get("SMTP_PASSWORD", "")
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = f"Новая заявка от {name}"
+    msg["From"] = sender
+    msg["To"] = recipient
+
+    html = f"""
+    <html><body style="font-family: Arial, sans-serif; color: #333; max-width: 600px;">
+      <h2 style="color: #b8924a;">Новая заявка с сайта</h2>
+      <table style="width:100%; border-collapse:collapse;">
+        <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888; width:140px;">Имя</td>
+            <td style="padding:8px 0; border-bottom:1px solid #eee;"><b>{name}</b></td></tr>
+        <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888;">Телефон</td>
+            <td style="padding:8px 0; border-bottom:1px solid #eee;"><b>{phone}</b></td></tr>
+        <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888;">Тип объекта</td>
+            <td style="padding:8px 0; border-bottom:1px solid #eee;">{object_type}</td></tr>
+        <tr><td style="padding:8px 0; color:#888; vertical-align:top;">Сообщение</td>
+            <td style="padding:8px 0;">{message or '—'}</td></tr>
+      </table>
+    </body></html>
+    """
+    msg.attach(MIMEText(html, "html", "utf-8"))
+
+    with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+        server.login(sender, password)
+        server.sendmail(sender, recipient, msg.as_string())
 
 
 def handler(event: dict, context) -> dict:
-    """Принимает заявку с формы обратной связи и сохраняет в базу данных."""
+    """Принимает заявку с формы обратной связи, сохраняет в БД и отправляет на почту студии."""
 
     if event.get('httpMethod') == 'OPTIONS':
         return {
@@ -41,6 +79,8 @@ def handler(event: dict, context) -> dict:
     conn.commit()
     cur.close()
     conn.close()
+
+    send_email(name, phone, object_type, message)
 
     return {
         'statusCode': 200,
