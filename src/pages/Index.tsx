@@ -86,8 +86,32 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [form, setForm] = useState({ name: "", phone: "", type: "Квартира" });
+  const [form, setForm] = useState({ name: "", phone: "", type: "Квартира", message: "" });
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const SUBMIT_URL = "https://functions.poehali.dev/9d0bc1fe-55c4-4633-80f9-4e76e866bf34";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.phone.trim()) return;
+    setFormState("loading");
+    try {
+      const res = await fetch(SUBMIT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, phone: form.phone, object_type: form.type, message: form.message }),
+      });
+      if (res.ok) {
+        setFormState("success");
+        setForm({ name: "", phone: "", type: "Квартира", message: "" });
+      } else {
+        setFormState("error");
+      }
+    } catch {
+      setFormState("error");
+    }
+  };
 
   const [calcArea, setCalcArea] = useState(70);
   const [calcObj, setCalcObj] = useState(0);
@@ -485,46 +509,87 @@ export default function Index() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <form onSubmit={e => e.preventDefault()} className="space-y-4">
-              <div>
-                <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Ваше имя</label>
-                <input
-                  value={form.name}
-                  onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
-                  placeholder="Как вас зовут?"
-                  className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
-                />
-              </div>
-              <div>
-                <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Телефон</label>
-                <input
-                  value={form.phone}
-                  onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-                  placeholder="+7 (___) ___-__-__"
-                  className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
-                />
-              </div>
-              <div>
-                <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Тип объекта</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {["Квартира", "Дом", "Офис", "Другое"].map(t => (
-                    <button key={t} type="button" onClick={() => setForm(p => ({ ...p, type: t }))}
-                      className={`py-2.5 font-body text-xs transition-colors ${form.type === t
-                        ? "bg-[hsl(36,55%,62%)] text-background"
-                        : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
-                      {t}
-                    </button>
-                  ))}
+            {formState === "success" ? (
+              <div className="border border-[hsl(36,55%,62%)] p-10 flex flex-col items-center text-center gap-4">
+                <div className="w-12 h-12 border border-[hsl(36,55%,62%)] flex items-center justify-center">
+                  <Icon name="Check" size={22} className="text-[hsl(36,55%,62%)]" />
                 </div>
+                <h3 className="font-display text-2xl font-medium text-foreground">Заявка принята!</h3>
+                <p className="font-body text-sm text-muted-foreground max-w-xs">
+                  Мы свяжемся с вами в течение 24 часов и подготовим предварительный расчёт.
+                </p>
+                <button onClick={() => setFormState("idle")}
+                  className="font-body text-xs text-muted-foreground underline underline-offset-4 mt-2">
+                  Отправить ещё одну заявку
+                </button>
               </div>
-              <button type="submit"
-                className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors mt-2">
-                Записаться на консультацию
-              </button>
-              <p className="font-body text-xs text-muted-foreground text-center">
-                Нажимая кнопку, вы соглашаетесь с Политикой обработки персональных данных
-              </p>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Ваше имя *</label>
+                    <input
+                      required
+                      value={form.name}
+                      onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                      placeholder="Как вас зовут?"
+                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Телефон *</label>
+                    <input
+                      required
+                      value={form.phone}
+                      onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
+                      placeholder="+7 (___) ___-__-__"
+                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Тип объекта</label>
+                  <div className="grid grid-cols-4 gap-2">
+                    {["Квартира", "Дом", "Офис", "Другое"].map(t => (
+                      <button key={t} type="button" onClick={() => setForm(p => ({ ...p, type: t }))}
+                        className={`py-2.5 font-body text-xs transition-colors ${form.type === t
+                          ? "bg-[hsl(36,55%,62%)] text-background"
+                          : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Сообщение</label>
+                  <textarea
+                    value={form.message}
+                    onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
+                    placeholder="Расскажите о вашем проекте: площадь, пожелания, сроки..."
+                    rows={3}
+                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors resize-none"
+                  />
+                </div>
+                {formState === "error" && (
+                  <p className="font-body text-xs text-red-500">Что-то пошло не так. Попробуйте ещё раз или позвоните нам.</p>
+                )}
+                <button type="submit" disabled={formState === "loading"}
+                  className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  {formState === "loading" ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                      </svg>
+                      Отправляем...
+                    </>
+                  ) : "Записаться на консультацию"}
+                </button>
+                <p className="font-body text-xs text-muted-foreground text-center">
+                  Нажимая кнопку, вы соглашаетесь с Политикой обработки персональных данных
+                </p>
+              </form>
+            )}
           </Reveal>
         </div>
       </section>
