@@ -194,7 +194,7 @@ export default function Index() {
 
           <div className="hidden md:grid grid-cols-2 gap-px bg-border"
             style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
-            {[["200+","проектов реализовано"],["7","шагов под ключ"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
+            {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
               <div key={n} className="bg-card p-6">
                 <div className="font-display text-4xl font-medium text-[hsl(36,55%,62%)] mb-1">{n}</div>
                 <div className="font-body text-xs text-muted-foreground">{l}</div>
@@ -243,13 +243,13 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Как мы работаем</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">7 шагов вашего интерьера</h2>
+            <h2 className="font-display text-4xl font-medium text-foreground">Процесс создания вашего интерьера</h2>
           </Reveal>
           <div className="divide-y divide-border">
             {STEPS.map((s, i) => (
               <Reveal key={i} delay={i * 0.04}>
                 <div className="grid md:grid-cols-[80px_1fr_1fr] gap-4 py-7 group hover:bg-card transition-colors px-2">
-                  <span className="font-display text-3xl font-light text-[hsl(36,55%,62%)]/35 group-hover:text-[hsl(36,55%,62%)] transition-colors">{s.n}</span>
+                  <span className="font-display text-3xl font-light text-[hsl(36,45%,72%)] group-hover:text-[hsl(36,55%,55%)] transition-colors">{s.n}</span>
                   <h3 className="font-display text-xl font-medium text-foreground self-center">{s.title}</h3>
                   <p className="font-body text-sm text-muted-foreground leading-relaxed self-center">{s.desc}</p>
                 </div>
