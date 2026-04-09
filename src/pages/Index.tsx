@@ -86,7 +86,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [form, setForm] = useState({ name: "", phone: "", type: "Квартира", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", type: "Квартира", message: "" });
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -100,11 +100,11 @@ export default function Index() {
       const res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, object_type: form.type, message: form.message }),
+        body: JSON.stringify({ name: form.name, phone: form.phone, email: form.email, object_type: form.type, message: form.message }),
       });
       if (res.ok) {
         setFormState("success");
-        setForm({ name: "", phone: "", type: "Квартира", message: "" });
+        setForm({ name: "", phone: "", email: "", type: "Квартира", message: "" });
       } else {
         setFormState("error");
       }
@@ -546,6 +546,16 @@ export default function Index() {
                       className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
                     />
                   </div>
+                </div>
+                <div>
+                  <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                    placeholder="your@email.com"
+                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                  />
                 </div>
                 <div>
                   <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Тип объекта</label>

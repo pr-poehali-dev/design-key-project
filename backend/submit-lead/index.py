@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def send_email(name: str, phone: str, object_type: str, message: str):
+def send_email(name: str, phone: str, email: str, object_type: str, message: str):
     """Отправляет письмо с заявкой на почту студии."""
     smtp_host = "smtp.yandex.ru"
     smtp_port = 465
@@ -19,6 +19,11 @@ def send_email(name: str, phone: str, object_type: str, message: str):
     msg["From"] = sender
     msg["To"] = recipient
 
+    email_row = f"""
+        <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888;">Email</td>
+            <td style="padding:8px 0; border-bottom:1px solid #eee;"><a href="mailto:{email}" style="color:#b8924a;">{email}</a></td></tr>
+    """ if email else ""
+
     html = f"""
     <html><body style="font-family: Arial, sans-serif; color: #333; max-width: 600px;">
       <h2 style="color: #b8924a;">Новая заявка с сайта</h2>
@@ -26,7 +31,8 @@ def send_email(name: str, phone: str, object_type: str, message: str):
         <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888; width:140px;">Имя</td>
             <td style="padding:8px 0; border-bottom:1px solid #eee;"><b>{name}</b></td></tr>
         <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888;">Телефон</td>
-            <td style="padding:8px 0; border-bottom:1px solid #eee;"><b>{phone}</b></td></tr>
+            <td style="padding:8px 0; border-bottom:1px solid #eee;"><b><a href="tel:{phone}" style="color:#b8924a;">{phone}</a></b></td></tr>
+        {email_row}
         <tr><td style="padding:8px 0; border-bottom:1px solid #eee; color:#888;">Тип объекта</td>
             <td style="padding:8px 0; border-bottom:1px solid #eee;">{object_type}</td></tr>
         <tr><td style="padding:8px 0; color:#888; vertical-align:top;">Сообщение</td>
@@ -59,6 +65,7 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     name = (body.get('name') or '').strip()
     phone = (body.get('phone') or '').strip()
+    email = (body.get('email') or '').strip()
     object_type = (body.get('object_type') or '').strip()
     message = (body.get('message') or '').strip()
 
@@ -80,7 +87,7 @@ def handler(event: dict, context) -> dict:
     cur.close()
     conn.close()
 
-    send_email(name, phone, object_type, message)
+    send_email(name, phone, email, object_type, message)
 
     return {
         'statusCode': 200,
