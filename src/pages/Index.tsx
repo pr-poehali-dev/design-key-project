@@ -266,7 +266,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-display text-lg tracking-wide text-foreground">Студия интерьера</span>
           <nav className="hidden md:flex items-center gap-7">
-            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"]].map(([l,id]) => (
+            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Портфолио","portfolio"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)}
                 className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {l}
@@ -283,7 +283,7 @@ export default function Index() {
         </div>
         {menuOpen && (
           <div className="md:hidden bg-background border-t border-border px-6 py-4 flex flex-col gap-3">
-            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"],["Контакт","contact"]].map(([l,id]) => (
+            {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Портфолио","portfolio"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"],["Контакт","contact"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)} className="text-left font-body text-sm py-1">{l}</button>
             ))}
           </div>
