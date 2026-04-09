@@ -146,6 +146,79 @@ function ReviewsCarousel() {
   );
 }
 
+const PORTFOLIO = [
+  { category: "apartment", title: "Квартира 80 м², Москва", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/2857c0b1-9dd4-4268-ba37-4968d4984948.jpg" },
+  { category: "apartment", title: "Квартира-студия 45 м²", desc: "Зонирование без перегородок, светлые тона, визуальное расширение пространства. Помощь в выборе мебели под бюджет.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/b1eb15fa-7cbf-40e5-9fbc-e90c0bf64dfa.jpg" },
+  { category: "house", title: "Дом 250 м², Подмосковье", desc: "Тёплый современный дом с высокими потолками, кухней-столовой и зоной отдыха у камина. Полный цикл: от замера до мебели.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg" },
+  { category: "house", title: "Дом в коттеджном посёлке", desc: "Функциональный интерьер под семью с детьми, акцент на безопасности, зоне хранения и комфортном пространстве.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg" },
+  { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg" },
+  { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg" },
+  { category: "commercial", title: "Бутик одежды", desc: "Интерьер, который подчёркивает бренд и создаёт комфортную атмосферу для покупателей и примерок.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/3f31d253-9c83-4ea2-b720-1c25a434d68a.jpg" },
+];
+
+const PORTFOLIO_FILTERS = [
+  { key: "all", label: "Все проекты" },
+  { key: "apartment", label: "Квартиры" },
+  { key: "house", label: "Дома" },
+  { key: "office", label: "Офисы" },
+  { key: "commercial", label: "Коммерческие" },
+];
+
+function PortfolioSection() {
+  const [filter, setFilter] = useState("all");
+  const filtered = filter === "all" ? PORTFOLIO : PORTFOLIO.filter(p => p.category === filter);
+
+  return (
+    <section id="portfolio" className="py-20">
+      <div className="max-w-6xl mx-auto px-6">
+        <Reveal className="mb-10">
+          <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Портфолио</p>
+          <h2 className="font-display text-4xl font-medium text-foreground mb-3">Наши проекты по типам объектов</h2>
+          <p className="font-body text-sm text-muted-foreground max-w-xl">Выберите категорию, чтобы посмотреть реальные примеры интерьера от замера до переезда.</p>
+        </Reveal>
+
+        <div className="flex flex-wrap gap-2 mb-10">
+          {PORTFOLIO_FILTERS.map(f => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`font-body text-xs px-4 py-2 border transition-colors ${filter === f.key ? "bg-[hsl(36,55%,62%)] text-background border-[hsl(36,55%,62%)]" : "border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+          {filtered.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.06}>
+              <div className="bg-background group overflow-hidden">
+                <div className="overflow-hidden aspect-[4/3]">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-lg font-medium text-foreground mb-2">{p.title}</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <a href="#contact" className="inline-block font-body text-sm border border-border px-8 py-3 text-foreground hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
+            Обсудить ваш проект
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", email: "", type: "Квартира", message: "" });
@@ -348,6 +421,9 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* PORTFOLIO */}
+      <PortfolioSection />
 
       {/* FOR WHOM */}
       <section className="py-20">
