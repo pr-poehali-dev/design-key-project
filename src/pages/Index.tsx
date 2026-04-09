@@ -28,6 +28,7 @@ const REVIEWS = [
   { text: "«Не хотелось заниматься шторами, мебелью и светом — теперь и не надо.»", author: "Дмитрий В.", city: "Франкфурт" },
   { text: "«Очень боялась, что с домом будет сложнее, чем с квартирой, но студия взяла всё на себя: от замера до комплектации. Мы жили в другом городе и решили всё делать онлайн — ни разу не пожалели. Дом получился таким, как я мечтала: светлым, удобным и очень домашним.»", author: "Ольга", city: "Дом" },
   { text: "«Когда делали ремонт, я просто устала переживать за каждую мелочь. Студия сначала показала 3D, потом всё сопровождала до конца. Квартира получилась намного более продуманной, чем я планировала, и главное — не пришлось ничего доделывать после ремонта.»", author: "Екатерина", city: "Квартира" },
+  { text: "«Работали над загородным домом 280 м². Студия предложила решения, о которых мы даже не думали — открытую лестницу со светом, панорамное окно в гостиной. Каждая деталь на месте, ничего лишнего.»", author: "Михаил С.", city: "Подмосковье" },
 ];
 
 const FAQ = [
@@ -82,6 +83,65 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
         transition: `opacity 0.7s ${delay}s ease, transform 0.7s ${delay}s ease`,
       }}>
       {children}
+    </div>
+  );
+}
+
+function ReviewsCarousel() {
+  const [active, setActive] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetTimer = (next: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setActive(i => (i + 1) % REVIEWS.length);
+    }, 5000);
+    setActive(next);
+  };
+
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      setActive(i => (i + 1) % REVIEWS.length);
+    }, 5000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [active]);
+
+  const r = REVIEWS[active];
+
+  return (
+    <div className="relative">
+      <div className="border border-border bg-background p-10 min-h-[200px] flex flex-col justify-between transition-all duration-500">
+        <p className="font-display text-xl md:text-2xl font-light text-foreground/85 leading-relaxed italic mb-8">{r.text}</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-body text-sm font-medium text-foreground">{r.author}</p>
+            <p className="font-body text-xs text-muted-foreground mt-0.5">{r.city}</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => resetTimer((active - 1 + REVIEWS.length) % REVIEWS.length)}
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors"
+            >
+              <Icon name="ChevronLeft" size={16} className="text-muted-foreground" />
+            </button>
+            <button
+              onClick={() => resetTimer((active + 1) % REVIEWS.length)}
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors"
+            >
+              <Icon name="ChevronRight" size={16} className="text-muted-foreground" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-2 mt-4">
+        {REVIEWS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => resetTimer(i)}
+            className={`h-0.5 transition-all duration-300 ${i === active ? "bg-[hsl(36,55%,62%)] w-8" : "bg-border w-4 hover:bg-muted-foreground"}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -329,19 +389,7 @@ export default function Index() {
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Отзывы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Что говорят клиенты</h2>
           </Reveal>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-px bg-border">
-            {REVIEWS.map((r, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className="bg-background p-7 h-full flex flex-col justify-between">
-                  <p className="font-body text-sm text-foreground/80 leading-relaxed italic mb-6">{r.text}</p>
-                  <div>
-                    <p className="font-body text-sm font-medium text-foreground">{r.author}</p>
-                    <p className="font-body text-xs text-muted-foreground mt-0.5">{r.city}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <ReviewsCarousel />
         </div>
       </section>
 
