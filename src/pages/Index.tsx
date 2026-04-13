@@ -296,9 +296,7 @@ export default function Index() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={IMG_RESULT} alt="Интерьер под ключ" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-background/72" />
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundSize: "128px" }} />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center">
@@ -307,13 +305,13 @@ export default function Index() {
               style={{ animation: "fadeUp 0.7s 0.1s ease both" }}>
               Дизайн интерьера под ключ
             </p>
-            <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground leading-[1.1] mb-6"
+            <h1 className="font-display text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6"
               style={{ animation: "fadeUp 0.7s 0.2s ease both" }}>
               От замера<br />
               <em className="italic font-normal text-[hsl(36,55%,62%)]">до переезда</em><br />
               без стресса
             </h1>
-            <p className="font-body text-base text-muted-foreground leading-relaxed mb-8 max-w-md"
+            <p className="font-body text-base text-white/80 leading-relaxed mb-8 max-w-md"
               style={{ animation: "fadeUp 0.7s 0.35s ease both" }}>
               Без догадок и лишних звонков. Единая точка ответственности — мы берём весь процесс от замера до финальной уборки. Вам остаётся только наслаждаться готовым интерьером.
             </p>
@@ -323,7 +321,7 @@ export default function Index() {
                 Заказать замер
               </button>
               <button onClick={() => scrollTo("calculator")}
-                className="border border-border font-body text-sm text-foreground px-7 py-3.5 hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
+                className="border border-white/60 font-body text-sm text-white px-7 py-3.5 hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
                 Просчитать бюджет
               </button>
             </div>
