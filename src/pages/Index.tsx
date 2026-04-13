@@ -293,9 +293,9 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section aria-label="Главный экран" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={IMG_RESULT} alt="Интерьер под ключ" className="w-full h-full object-cover" />
+          <img src={IMG_RESULT} alt="Готовый интерьер квартиры под ключ — студия дизайна" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
@@ -344,7 +344,7 @@ export default function Index() {
       </section>
 
       {/* PROBLEM */}
-      <section id="about" className="py-20 bg-card border-y border-border">
+      <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-20 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Проблема</p>
@@ -365,7 +365,7 @@ export default function Index() {
             </div>
           </Reveal>
           <Reveal delay={0.15} className="relative">
-            <img src={IMG_PROCESS} alt="Процесс работы" className="w-full h-[420px] object-cover" />
+            <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[420px] object-cover" loading="lazy" />
             <div className="absolute top-6 -right-2 md:-right-4 bg-[hsl(36,55%,62%)] px-5 py-3">
               <p className="font-body text-xs text-background font-medium">Авторский надзор на каждом этапе</p>
             </div>
@@ -374,7 +374,7 @@ export default function Index() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="py-20">
+      <section id="process" aria-label="Этапы работы студии дизайна интерьера" className="py-20">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Как мы работаем</p>
@@ -400,7 +400,7 @@ export default function Index() {
       </section>
 
       {/* FEATURES */}
-      <section id="features" className="py-20 bg-card border-y border-border">
+      <section id="features" aria-label="Преимущества студии дизайна интерьера" className="py-20 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Почему мы</p>
@@ -429,7 +429,7 @@ export default function Index() {
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <Reveal delay={0.1} className="relative order-2 md:order-1">
-            <img src={IMG_RESULT} alt="Готовый интерьер" className="w-full h-[380px] object-cover" />
+            <img src={IMG_RESULT} alt="Готовый дизайн интерьера квартиры — результат работы студии" className="w-full h-[380px] object-cover" loading="lazy" />
           </Reveal>
           <Reveal className="order-1 md:order-2">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Для кого</p>
@@ -459,7 +459,7 @@ export default function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="py-20 bg-card border-y border-border">
+      <section id="reviews" aria-label="Отзывы клиентов студии дизайна интерьера" className="py-20 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Отзывы</p>
@@ -470,7 +470,7 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20">
+      <section id="faq" aria-label="Частые вопросы о дизайне интерьера" className="py-20">
         <div className="max-w-3xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Вопросы</p>
@@ -498,7 +498,7 @@ export default function Index() {
       </section>
 
       {/* CALCULATOR */}
-      <section id="calculator" className="py-20 border-y border-border bg-background">
+      <section id="calculator" aria-label="Калькулятор стоимости дизайна интерьера" className="py-20 border-y border-border bg-background">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Онлайн-расчёт</p>
