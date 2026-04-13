@@ -87,6 +87,77 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+const TRACK = {
+  url: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/6d9a530b-1c28-4c32-8c0c-e7a6314fb969.mp3",
+  title: "Музыка про дизайн и ремонт",
+  artist: "Студия дизайна интерьера",
+};
+
+function MiniPlayer() {
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggle = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (playing) { a.pause(); } else { a.play(); }
+    setPlaying(!playing);
+  };
+
+  const fmt = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  return (
+    <div className="flex items-center gap-4 border border-border bg-background px-5 py-4 mt-8">
+      <audio
+        ref={audioRef}
+        src={TRACK.url}
+        onTimeUpdate={() => {
+          const a = audioRef.current;
+          if (a) setProgress(a.currentTime);
+        }}
+        onLoadedMetadata={() => {
+          const a = audioRef.current;
+          if (a) setDuration(a.duration);
+        }}
+        onEnded={() => setPlaying(false)}
+      />
+      <button
+        onClick={toggle}
+        className="w-10 h-10 flex-shrink-0 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors"
+        aria-label={playing ? "Пауза" : "Играть"}
+      >
+        <Icon name={playing ? "Pause" : "Play"} size={16} className="text-[hsl(36,55%,62%)]" />
+      </button>
+      <div className="flex-1 min-w-0">
+        <p className="font-body text-xs font-medium text-foreground truncate">{TRACK.title}</p>
+        <p className="font-body text-xs text-muted-foreground truncate">{TRACK.artist}</p>
+        <div className="mt-2 relative h-px bg-border cursor-pointer"
+          onClick={(e) => {
+            const a = audioRef.current;
+            if (!a || !duration) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            a.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
+          }}>
+          <div
+            className="absolute top-0 left-0 h-px bg-[hsl(36,55%,62%)] transition-all"
+            style={{ width: duration ? `${(progress / duration) * 100}%` : "0%" }}
+          />
+        </div>
+      </div>
+      <span className="font-body text-xs text-muted-foreground flex-shrink-0">
+        {duration ? `${fmt(progress)} / ${fmt(duration)}` : "—:—"}
+      </span>
+      <Icon name="Music" size={14} className="text-muted-foreground flex-shrink-0" />
+    </div>
+  );
+}
+
 function ReviewsCarousel() {
   const [active, setActive] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -466,6 +537,7 @@ export default function Index() {
             <h2 className="font-display text-4xl font-medium text-foreground">Что говорят клиенты</h2>
           </Reveal>
           <ReviewsCarousel />
+          <MiniPlayer />
         </div>
       </section>
 
