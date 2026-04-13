@@ -23,12 +23,12 @@ const FEATURES = [
 ];
 
 const REVIEWS = [
-  { text: "«Не ожидали, что можно так спокойно отдать в руки весь процесс — от замера до переезда. Итог даже лучше, чем в 3D.»", author: "Наталья К.", city: "Москва" },
-  { text: "«Сначала думали, что будет дорого, но потом поняли: экономия на стрессе и времени стоила этих денег.»", author: "Елена М.", city: "Санкт-Петербург" },
-  { text: "«Не хотелось заниматься шторами, мебелью и светом — теперь и не надо.»", author: "Дмитрий В.", city: "Франкфурт" },
-  { text: "«Очень боялась, что с домом будет сложнее, чем с квартирой, но студия взяла всё на себя: от замера до комплектации. Мы жили в другом городе и решили всё делать онлайн — ни разу не пожалели. Дом получился таким, как я мечтала: светлым, удобным и очень домашним.»", author: "Ольга", city: "Дом" },
-  { text: "«Когда делали ремонт, я просто устала переживать за каждую мелочь. Студия сначала показала 3D, потом всё сопровождала до конца. Квартира получилась намного более продуманной, чем я планировала, и главное — не пришлось ничего доделывать после ремонта.»", author: "Екатерина", city: "Квартира" },
-  { text: "«Работали над загородным домом 280 м². Студия предложила решения, о которых мы даже не думали — открытую лестницу со светом, панорамное окно в гостиной. Каждая деталь на месте, ничего лишнего.»", author: "Михаил С.", city: "Подмосковье" },
+  { text: "Не ожидали, что можно так спокойно отдать в руки весь процесс — от замера до переезда. Итог даже лучше, чем в 3D.", author: "Наталья К.", city: "Москва", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/66c8d441-b7b8-437e-b7e1-f9e6dafff2e2.jpg" },
+  { text: "Сначала думали, что будет дорого, но потом поняли: экономия на стрессе и времени стоила этих денег.", author: "Елена М.", city: "Санкт-Петербург", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/07c0167c-170b-4002-92ac-d9bd53534f39.jpg" },
+  { text: "Не хотелось заниматься шторами, мебелью и светом — теперь и не надо. Всё сделали за нас, причём с вкусом.", author: "Дмитрий В.", city: "Франкфурт", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/6796dadf-3a50-42ab-824d-8d25d2ed5cf4.jpg" },
+  { text: "Студия взяла всё на себя: от замера до комплектации. Мы жили в другом городе — ни разу не пожалели. Дом получился таким, как я мечтала: светлым, удобным и очень домашним.", author: "Ольга С.", city: "Краснодар", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/8c9d364d-6357-4e35-8837-c112a4ca008b.jpg" },
+  { text: "Студия сначала показала 3D, потом всё сопровождала до конца. Квартира получилась намного более продуманной, чем я планировала. Главное — не пришлось ничего доделывать после ремонта.", author: "Екатерина В.", city: "Москва", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/aaff633c-b642-4bdc-8f0e-f03452f5bc45.jpg" },
+  { text: "Студия предложила решения, о которых мы даже не думали — открытую лестницу со светом, панорамное окно в гостиной. Каждая деталь на месте, ничего лишнего.", author: "Михаил С.", city: "Подмосковье", stars: 5, avatar: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/77b1b0ff-f23a-424f-b645-f1e9b6f229ac.jpg" },
 ];
 
 const FAQ = [
@@ -158,61 +158,55 @@ function MiniPlayer() {
   );
 }
 
-function ReviewsCarousel() {
-  const [active, setActive] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+function StarRating({ stars }: { stars: number }) {
+  return (
+    <div className="flex gap-0.5 mb-4">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Icon key={i} name="Star" size={13}
+          className={i < stars ? "text-[hsl(36,55%,62%)] fill-[hsl(36,55%,62%)]" : "text-border"} />
+      ))}
+    </div>
+  );
+}
 
-  const resetTimer = (next: number) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setActive(i => (i + 1) % REVIEWS.length);
-    }, 5000);
-    setActive(next);
-  };
-
-  useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      setActive(i => (i + 1) % REVIEWS.length);
-    }, 5000);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [active]);
-
-  const r = REVIEWS[active];
+function ReviewsGrid() {
+  const [page, setPage] = useState(0);
+  const perPage = 3;
+  const pages = Math.ceil(REVIEWS.length / perPage);
+  const visible = REVIEWS.slice(page * perPage, page * perPage + perPage);
 
   return (
-    <div className="relative">
-      <div className="border border-border bg-background p-10 min-h-[200px] flex flex-col justify-between transition-all duration-500">
-        <p className="font-display text-xl md:text-2xl font-light text-foreground/85 leading-relaxed italic mb-8">{r.text}</p>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-body text-sm font-medium text-foreground">{r.author}</p>
-            <p className="font-body text-xs text-muted-foreground mt-0.5">{r.city}</p>
+    <div>
+      <div className="grid md:grid-cols-3 gap-px bg-border">
+        {visible.map((r, i) => (
+          <div key={i} className="bg-background p-7 flex flex-col gap-4">
+            <StarRating stars={r.stars} />
+            <p className="font-body text-sm text-foreground/80 leading-relaxed flex-1">"{r.text}"</p>
+            <div className="flex items-center gap-3 pt-2 border-t border-border">
+              <img src={r.avatar} alt={r.author} className="w-10 h-10 rounded-full object-cover flex-shrink-0" loading="lazy" />
+              <div>
+                <p className="font-body text-sm font-medium text-foreground">{r.author}</p>
+                <p className="font-body text-xs text-muted-foreground">{r.city}</p>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => resetTimer((active - 1 + REVIEWS.length) % REVIEWS.length)}
-              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors"
-            >
+        ))}
+      </div>
+      {pages > 1 && (
+        <div className="flex items-center justify-between mt-6">
+          <p className="font-body text-xs text-muted-foreground">{page * perPage + 1}–{Math.min(page * perPage + perPage, REVIEWS.length)} из {REVIEWS.length} отзывов</p>
+          <div className="flex gap-2">
+            <button onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
               <Icon name="ChevronLeft" size={16} className="text-muted-foreground" />
             </button>
-            <button
-              onClick={() => resetTimer((active + 1) % REVIEWS.length)}
-              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors"
-            >
+            <button onClick={() => setPage(p => Math.min(pages - 1, p + 1))} disabled={page === pages - 1}
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
               <Icon name="ChevronRight" size={16} className="text-muted-foreground" />
             </button>
           </div>
         </div>
-      </div>
-      <div className="flex gap-2 mt-4">
-        {REVIEWS.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => resetTimer(i)}
-            className={`h-0.5 transition-all duration-300 ${i === active ? "bg-[hsl(36,55%,62%)] w-8" : "bg-border w-4 hover:bg-muted-foreground"}`}
-          />
-        ))}
-      </div>
+      )}
     </div>
   );
 }
@@ -536,7 +530,7 @@ export default function Index() {
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Отзывы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Что говорят клиенты</h2>
           </Reveal>
-          <ReviewsCarousel />
+          <ReviewsGrid />
           <MiniPlayer />
         </div>
       </section>
