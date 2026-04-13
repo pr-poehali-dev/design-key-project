@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const IMG_PROCESS = "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/7b882352-dada-4fbc-b04a-d1444e58173b.jpg";
-const IMG_RESULT = "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/865e73e5-3f27-4287-97a0-c8469635b0f6.jpg";
+const IMG_RESULT = "https://cdn.poehali.dev/files/28643067-fd58-47f9-8b71-0dd9454bfeb2.JPG";
 
 const STEPS = [
   { n: "01", title: "Замер и анализ", desc: "Бесплатный или расчётный выезд (онлайн/офлайн), диагностика планировки, пожеланий, бюджета." },
