@@ -158,6 +158,97 @@ function MiniPlayer() {
   );
 }
 
+function PrivacyModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/70" />
+      <div
+        className="relative bg-background border border-border max-w-2xl w-full max-h-[80vh] flex flex-col"
+        onClick={e => e.stopPropagation()}
+        style={{ animation: "fadeUp 0.3s ease both" }}
+      >
+        <div className="flex items-center justify-between px-8 py-5 border-b border-border">
+          <h2 className="font-display text-xl font-medium text-foreground">Политика конфиденциальности</h2>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center hover:text-[hsl(36,55%,62%)] transition-colors">
+            <Icon name="X" size={18} className="text-muted-foreground" />
+          </button>
+        </div>
+        <div className="overflow-y-auto px-8 py-6 space-y-5 font-body text-sm text-muted-foreground leading-relaxed">
+          <p className="text-foreground font-medium">Последнее обновление: апрель 2026 г.</p>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">1. Общие положения</h3>
+            <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей, которые оставляют заявку на сайте Студии дизайна интерьера. Обработка персональных данных осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">2. Какие данные мы собираем</h3>
+            <p>При заполнении формы на сайте мы собираем следующие персональные данные:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              <li>Имя и фамилия</li>
+              <li>Номер телефона</li>
+              <li>Адрес электронной почты</li>
+              <li>Информация о проекте (тип объекта, сообщение)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">3. Цели обработки данных</h3>
+            <p>Ваши данные используются исключительно для:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              <li>Связи с вами по вопросам вашей заявки</li>
+              <li>Подготовки предварительного расчёта стоимости проекта</li>
+              <li>Консультации по услугам студии</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">4. Передача данных третьим лицам</h3>
+            <p>Мы не передаём ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством Российской Федерации. Данные не используются в рекламных целях и не продаются.</p>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">5. Хранение и защита данных</h3>
+            <p>Персональные данные хранятся на защищённых серверах и обрабатываются ограниченным кругом сотрудников. Мы принимаем необходимые технические и организационные меры для защиты ваших данных от несанкционированного доступа.</p>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">6. Срок хранения</h3>
+            <p>Данные хранятся в течение 3 лет с момента получения заявки, либо до момента отзыва согласия.</p>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">7. Ваши права</h3>
+            <p>Вы вправе в любое время:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
+              <li>Запросить доступ к своим данным</li>
+              <li>Потребовать исправления или удаления данных</li>
+              <li>Отозвать согласие на обработку</li>
+            </ul>
+            <p className="mt-2">Для этого направьте запрос на почту: <span className="text-foreground">Studioda.1@yandex.ru</span></p>
+          </section>
+
+          <section>
+            <h3 className="font-medium text-foreground mb-2">8. Контакты</h3>
+            <p>Студия дизайна интерьера<br />Телефон: 8 908 992-12-47<br />Email: Studioda.1@yandex.ru<br />Москва, Россия</p>
+          </section>
+        </div>
+        <div className="px-8 py-5 border-t border-border">
+          <button onClick={onClose}
+            className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3 hover:bg-[hsl(36,55%,55%)] transition-colors">
+            Понятно, закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StarRating({ stars }: { stars: number }) {
   return (
     <div className="flex gap-0.5 mb-4">
@@ -289,6 +380,8 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", type: "Квартира", message: "" });
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   const SUBMIT_URL = "https://functions.poehali.dev/9d0bc1fe-55c4-4633-80f9-4e76e866bf34";
 
@@ -775,8 +868,23 @@ export default function Index() {
                 {formState === "error" && (
                   <p className="font-body text-xs text-red-500">Что-то пошло не так. Попробуйте ещё раз или позвоните нам.</p>
                 )}
-                <button type="submit" disabled={formState === "loading"}
-                  className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div
+                    onClick={() => setAgreed(v => !v)}
+                    className={`w-4 h-4 flex-shrink-0 mt-0.5 border flex items-center justify-center transition-colors cursor-pointer ${agreed ? "bg-[hsl(36,55%,62%)] border-[hsl(36,55%,62%)]" : "border-border group-hover:border-[hsl(36,55%,62%)]"}`}
+                  >
+                    {agreed && <Icon name="Check" size={10} className="text-background" />}
+                  </div>
+                  <span className="font-body text-xs text-muted-foreground leading-relaxed">
+                    Я согласен(а) на обработку персональных данных в соответствии с{" "}
+                    <button type="button" onClick={() => setPrivacyOpen(true)}
+                      className="text-[hsl(36,55%,62%)] underline underline-offset-2 hover:text-[hsl(36,55%,50%)] transition-colors">
+                      Политикой конфиденциальности
+                    </button>
+                  </span>
+                </label>
+                <button type="submit" disabled={formState === "loading" || !agreed}
+                  className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                   {formState === "loading" ? (
                     <>
                       <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -787,9 +895,6 @@ export default function Index() {
                     </>
                   ) : "Записаться на консультацию"}
                 </button>
-                <p className="font-body text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с Политикой обработки персональных данных
-                </p>
               </form>
             )}
           </Reveal>
@@ -801,10 +906,13 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="font-display text-base tracking-wide text-foreground/60">Студия дизайна интерьера</span>
           <p className="font-body text-xs text-muted-foreground">© 2026 Дизайн интерьера под ключ для жилых и коммерческих объектов</p>
-          <p className="font-body text-xs text-muted-foreground">Москва · Франкфурт · Онлайн по всему миру</p>
+          <button onClick={() => setPrivacyOpen(true)} className="font-body text-xs text-muted-foreground hover:text-[hsl(36,55%,62%)] transition-colors underline underline-offset-2">
+            Политика конфиденциальности
+          </button>
         </div>
       </footer>
 
+      {privacyOpen && <PrivacyModal onClose={() => setPrivacyOpen(false)} />}
     </div>
   );
 }
