@@ -240,6 +240,8 @@ export default function Index() {
       if (res.ok) {
         setFormState("success");
         setForm({ name: "", phone: "", email: "", type: "Квартира", message: "" });
+        // @ts-expect-error ym is injected by Yandex Metrika
+        if (typeof ym !== "undefined") ym(108514213, "reachGoal", "form_submit");
       } else {
         setFormState("error");
       }
