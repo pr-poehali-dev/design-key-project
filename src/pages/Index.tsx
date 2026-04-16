@@ -20,6 +20,7 @@ const FEATURES = [
   { icon: "Fingerprint", title: "Индивидуальный подход", desc: "Мы не шаблонизируем, а создаём интерьер, который отражает ваш характер и образ жизни." },
   { icon: "ClipboardList", title: "Прозрачный процесс", desc: "Вы видите этапы, сроки, чек-лист и отчёт на каждом шаге." },
   { icon: "ShieldCheck", title: "Гарантия результата", desc: "Мы не сдаём проект «как есть», а корректируем до полного согласия." },
+  { icon: "Sparkles", title: "Красота в деталях", desc: "Каждый материал, светильник и аксессуар подбирается вручную — чтобы интерьер жил и радовал годами." },
 ];
 
 const REVIEWS = [
@@ -718,7 +719,7 @@ export default function Index() {
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Почему мы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Почему клиенты в России выбирают нас</h2>
           </Reveal>
-          <div className="grid md:grid-cols-2 gap-px bg-border">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {FEATURES.map((f, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div className="bg-background p-7 h-full group hover:bg-card transition-colors">
