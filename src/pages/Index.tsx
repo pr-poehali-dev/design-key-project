@@ -73,6 +73,24 @@ function useVisible(threshold = 0.12) {
   return { ref, visible };
 }
 
+function useParallax(strength = 0.18) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      setOffset(center * strength);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [strength]);
+  return { ref, offset };
+}
+
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const { ref, visible } = useVisible();
   return (
@@ -83,6 +101,21 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
         transition: `opacity 0.7s ${delay}s ease, transform 0.7s ${delay}s ease`,
       }}>
       {children}
+    </div>
+  );
+}
+
+function MissionPhoto() {
+  const { ref, offset } = useParallax(0.15);
+  return (
+    <div ref={ref} className="w-full h-[580px] overflow-hidden">
+      <img
+        src="https://cdn.poehali.dev/files/45ced571-529d-4290-8de8-f372a15d4a5b.jpg"
+        alt="Анастасия Белецкая — основатель Студии ДА"
+        className="w-full h-[130%] object-cover object-center"
+        style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -607,9 +640,7 @@ export default function Index() {
           {/* Фото руководителя */}
           <Reveal className="relative order-2 md:order-1">
             <div className="relative">
-              <div className="w-full h-[560px] overflow-hidden">
-                <img src="https://cdn.poehali.dev/files/45ced571-529d-4290-8de8-f372a15d4a5b.jpg" alt="Анастасия Белецкая — основатель Студии ДА" className="w-full h-full object-contain object-center bg-card" loading="lazy" />
-              </div>
+              <MissionPhoto />
               {/* Плашка с именем */}
               <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
                 <p className="font-display text-xl font-medium text-foreground">Анастасия Белецкая</p>
