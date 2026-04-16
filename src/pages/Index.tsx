@@ -158,6 +158,61 @@ function MiniPlayer() {
   );
 }
 
+function PromoPopup({ onClose, onCta }: { onClose: () => void; onCta: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/75" />
+      <div
+        className="relative bg-background border border-border max-w-md w-full overflow-hidden"
+        onClick={e => e.stopPropagation()}
+        style={{ animation: "fadeUp 0.4s ease both" }}
+      >
+        <button onClick={onClose} className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors z-10">
+          <Icon name="X" size={16} />
+        </button>
+
+        <div className="bg-[hsl(36,55%,62%)] px-8 py-7 text-background">
+          <p className="font-body text-xs tracking-[0.3em] uppercase mb-2 opacity-80">Специальное предложение</p>
+          <h2 className="font-display text-4xl font-medium leading-tight mb-1">Скидка 10%</h2>
+          <p className="font-display text-lg font-light opacity-90">на дизайн-проект</p>
+        </div>
+
+        <div className="px-8 py-7">
+          <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6">
+            Закажите проект <span className="text-foreground font-medium">прямо сейчас</span> — и получите скидку 10% на любой пакет услуг. Предложение действует только для новых клиентов и ограничено по времени.
+          </p>
+
+          <ul className="space-y-2 mb-7">
+            {["Бесплатный предварительный расчёт", "3D-визуализация в подарок", "Личный дизайнер на весь проект"].map((item, i) => (
+              <li key={i} className="flex items-center gap-3">
+                <div className="w-4 h-4 border border-[hsl(36,55%,62%)] flex items-center justify-center flex-shrink-0">
+                  <Icon name="Check" size={10} className="text-[hsl(36,55%,62%)]" />
+                </div>
+                <span className="font-body text-xs text-foreground/80">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            onClick={onCta}
+            className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors mb-3"
+          >
+            Получить скидку 10%
+          </button>
+          <button onClick={onClose} className="w-full font-body text-xs text-muted-foreground hover:text-foreground transition-colors py-1">
+            Нет, спасибо
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function PrivacyModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -382,6 +437,17 @@ export default function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [promoOpen, setPromoOpen] = useState(false);
+
+  useEffect(() => {
+    const shown = sessionStorage.getItem("promo_shown");
+    if (shown) return;
+    const t = setTimeout(() => {
+      setPromoOpen(true);
+      sessionStorage.setItem("promo_shown", "1");
+    }, 10000);
+    return () => clearTimeout(t);
+  }, []);
 
   const SUBMIT_URL = "https://functions.poehali.dev/9d0bc1fe-55c4-4633-80f9-4e76e866bf34";
 
@@ -913,6 +979,12 @@ export default function Index() {
       </footer>
 
       {privacyOpen && <PrivacyModal onClose={() => setPrivacyOpen(false)} />}
+      {promoOpen && (
+        <PromoPopup
+          onClose={() => setPromoOpen(false)}
+          onCta={() => { setPromoOpen(false); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+        />
+      )}
     </div>
   );
 }
