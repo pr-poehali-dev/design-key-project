@@ -399,6 +399,8 @@ const PORTFOLIO = [
   { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg" },
   { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg" },
   { category: "commercial", title: "Бутик одежды", desc: "Интерьер, который подчёркивает бренд и создаёт комфортную атмосферу для покупателей и примерок.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/3f31d253-9c83-4ea2-b720-1c25a434d68a.jpg" },
+  { category: "commercial", title: "Автоцентр — дизайн-проект и авторское сопровождение", desc: "Разработка концепции и полное авторское сопровождение строительства автоцентра: шоу-рум, клиентская зона, технические помещения.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg" },
+  { category: "commercial", title: "Геокупол — дизайн-проект и авторский надзор", desc: "Проектирование интерьера геокупола: уникальное пространство с панорамными видами, природными материалами и особой атмосферой уединения.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg" },
 ];
 
 const PORTFOLIO_FILTERS = [
