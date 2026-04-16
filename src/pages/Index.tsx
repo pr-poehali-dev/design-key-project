@@ -563,7 +563,7 @@ export default function Index() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center w-full">
           <div>
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5"
               style={{ animation: "fadeUp 0.7s 0.1s ease both" }}>
@@ -591,12 +591,23 @@ export default function Index() {
             </div>
           </div>
 
+          {/* Десктоп: сетка 2×2 */}
           <div className="hidden md:grid grid-cols-2 gap-px bg-border"
             style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
             {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
               <div key={n} className="bg-card p-6">
                 <div className="font-display text-4xl font-medium text-[hsl(36,55%,62%)] mb-1">{n}</div>
                 <div className="font-body text-xs text-muted-foreground">{l}</div>
+              </div>
+            ))}
+          </div>
+          {/* Мобайл: горизонтальная полоса */}
+          <div className="grid grid-cols-2 gap-px bg-white/10 md:hidden mt-2"
+            style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
+            {[["400+","проектов"],["22","года опыта"],["3–6 мес","на квартиру"],["Вся РФ","и Европа"]].map(([n, l]) => (
+              <div key={n} className="bg-black/40 backdrop-blur-sm px-4 py-3">
+                <div className="font-display text-2xl font-medium text-[hsl(36,55%,62%)] mb-0.5">{n}</div>
+                <div className="font-body text-xs text-white/70">{l}</div>
               </div>
             ))}
           </div>
