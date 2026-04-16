@@ -608,7 +608,7 @@ export default function Index() {
           <Reveal className="relative order-2 md:order-1">
             <div className="relative">
               <div className="w-full h-[560px] overflow-hidden">
-                <img src="https://cdn.poehali.dev/files/45ced571-529d-4290-8de8-f372a15d4a5b.jpg" alt="Анастасия Белецкая — основатель Студии ДА" className="w-full h-full object-cover object-top" loading="lazy" />
+                <img src="https://cdn.poehali.dev/files/45ced571-529d-4290-8de8-f372a15d4a5b.jpg" alt="Анастасия Белецкая — основатель Студии ДА" className="w-full h-full object-contain object-center bg-card" loading="lazy" />
               </div>
               {/* Плашка с именем */}
               <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
