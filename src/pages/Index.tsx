@@ -392,15 +392,21 @@ function ReviewsGrid() {
 }
 
 const PORTFOLIO = [
-  { category: "apartment", title: "Квартира 80 м², Москва", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/2857c0b1-9dd4-4268-ba37-4968d4984948.jpg" },
-  { category: "apartment", title: "Квартира-студия 45 м²", desc: "Зонирование без перегородок, светлые тона, визуальное расширение пространства. Помощь в выборе мебели под бюджет.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/b1eb15fa-7cbf-40e5-9fbc-e90c0bf64dfa.jpg" },
-  { category: "house", title: "Дом 250 м², Подмосковье", desc: "Тёплый современный дом с высокими потолками, кухней-столовой и зоной отдыха у камина. Полный цикл: от замера до мебели.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg" },
-  { category: "house", title: "Дом в коттеджном посёлке", desc: "Функциональный интерьер под семью с детьми, акцент на безопасности, зоне хранения и комфортном пространстве.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg" },
-  { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg" },
-  { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg" },
-  { category: "commercial", title: "Бутик одежды", desc: "Интерьер, который подчёркивает бренд и создаёт комфортную атмосферу для покупателей и примерок.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/3f31d253-9c83-4ea2-b720-1c25a434d68a.jpg" },
-  { category: "commercial", title: "Автоцентр — дизайн-проект и авторское сопровождение", desc: "Разработка концепции и полное авторское сопровождение строительства автоцентра: шоу-рум, клиентская зона, технические помещения.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg" },
-  { category: "commercial", title: "Геокупол — дизайн-проект и авторский надзор", desc: "Проектирование интерьера геокупола: уникальное пространство с панорамными видами, природными материалами и особой атмосферой уединения.", img: "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg" },
+  { category: "apartment", title: "Квартира 80 м², Москва", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/2857c0b1-9dd4-4268-ba37-4968d4984948.jpg"] },
+  { category: "apartment", title: "Квартира-студия 45 м²", desc: "Зонирование без перегородок, светлые тона, визуальное расширение пространства. Помощь в выборе мебели под бюджет.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/b1eb15fa-7cbf-40e5-9fbc-e90c0bf64dfa.jpg"] },
+  { category: "house", title: "Дом 250 м², Подмосковье", desc: "Тёплый современный дом с высокими потолками, кухней-столовой и зоной отдыха у камина. Полный цикл: от замера до мебели.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg"] },
+  { category: "house", title: "Дом в коттеджном посёлке", desc: "Функциональный интерьер под семью с детьми, акцент на безопасности, зоне хранения и комфортном пространстве.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg"] },
+  { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg"] },
+  { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg"] },
+  { category: "commercial", title: "Бутик одежды", desc: "Интерьер, который подчёркивает бренд и создаёт комфортную атмосферу для покупателей и примерок.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/3f31d253-9c83-4ea2-b720-1c25a434d68a.jpg"] },
+  { category: "commercial", title: "Автоцентр — дизайн-проект и авторское сопровождение", desc: "Разработка концепции и полное авторское сопровождение строительства автоцентра: шоу-рум, клиентская зона, технические помещения.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg"] },
+  { category: "commercial", title: "Геокупол «Купол неба» — дизайн-проект и авторский надзор", desc: "Концепция интерьера геодезического купола: кольцевые светильники, прозрачные стулья, природный камень снаружи и воздушное пространство внутри.", imgs: [
+    "https://cdn.poehali.dev/files/6760a717-58ff-410c-872f-ebb3193cdb97.jpg",
+    "https://cdn.poehali.dev/files/60ac5cc8-eedd-4d33-9f7d-2db5ac0a6526.jpg",
+    "https://cdn.poehali.dev/files/3447984f-46fa-4eff-9a79-0e43cbba8bfc.jpg",
+    "https://cdn.poehali.dev/files/267f8c0f-53a2-4cb6-a643-dff07f311c38.jpg",
+    "https://cdn.poehali.dev/files/59f11c28-bbd2-4e01-b29e-58de187356c6.jpg",
+  ]},
 ];
 
 const PORTFOLIO_FILTERS = [
@@ -410,6 +416,51 @@ const PORTFOLIO_FILTERS = [
   { key: "office", label: "Офисы" },
   { key: "commercial", label: "Коммерческие" },
 ];
+
+function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) {
+  const [idx, setIdx] = useState(0);
+  const multi = p.imgs.length > 1;
+  return (
+    <Reveal delay={delay}>
+      <div className="bg-background group overflow-hidden">
+        <div className="relative overflow-hidden aspect-[4/3]">
+          <img
+            src={p.imgs[idx]}
+            alt={p.title}
+            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+          />
+          {multi && (
+            <>
+              <button
+                onClick={() => setIdx(i => (i - 1 + p.imgs.length) % p.imgs.length)}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 flex items-center justify-center transition-colors z-10"
+              >
+                <Icon name="ChevronLeft" size={16} />
+              </button>
+              <button
+                onClick={() => setIdx(i => (i + 1) % p.imgs.length)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 flex items-center justify-center transition-colors z-10"
+              >
+                <Icon name="ChevronRight" size={16} />
+              </button>
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                {p.imgs.map((_, i) => (
+                  <button key={i} onClick={() => setIdx(i)}
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-[hsl(36,55%,62%)]" : "bg-white/50"}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="p-6">
+          <h3 className="font-display text-lg font-medium text-foreground mb-2">{p.title}</h3>
+          <p className="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 function PortfolioSection() {
   const [filter, setFilter] = useState("all");
@@ -438,21 +489,7 @@ function PortfolioSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {filtered.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.06}>
-              <div className="bg-background group overflow-hidden">
-                <div className="overflow-hidden aspect-[4/3]">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-display text-lg font-medium text-foreground mb-2">{p.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-                </div>
-              </div>
-            </Reveal>
+            <PortfolioCard key={p.title} p={p} delay={i * 0.06} />
           ))}
         </div>
 
