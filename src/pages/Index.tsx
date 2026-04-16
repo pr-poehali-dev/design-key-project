@@ -572,7 +572,7 @@ export default function Index() {
       </section>
 
       {/* PROBLEM */}
-      <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-20 bg-card border-y border-border">
+      <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Проблема</p>
@@ -602,7 +602,7 @@ export default function Index() {
       </section>
 
       {/* MISSION & VALUES */}
-      <section id="mission" aria-label="Миссия и ценности студии" className="py-24">
+      <section id="mission" aria-label="Миссия и ценности студии" className="py-14">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           {/* Фото руководителя */}
           <Reveal className="relative order-2 md:order-1">
@@ -658,7 +658,7 @@ export default function Index() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" aria-label="Этапы работы студии дизайна интерьера" className="py-20">
+      <section id="process" aria-label="Этапы работы студии дизайна интерьера" className="py-14">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Как мы работаем</p>
@@ -684,7 +684,7 @@ export default function Index() {
       </section>
 
       {/* FEATURES */}
-      <section id="features" aria-label="Преимущества студии дизайна интерьера" className="py-20 bg-card border-y border-border">
+      <section id="features" aria-label="Преимущества студии дизайна интерьера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Почему мы</p>
@@ -710,7 +710,7 @@ export default function Index() {
       <PortfolioSection />
 
       {/* FOR WHOM */}
-      <section className="py-20">
+      <section className="py-14">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <Reveal delay={0.1} className="relative order-2 md:order-1">
             <img src={IMG_RESULT} alt="Готовый дизайн интерьера квартиры — результат работы студии" className="w-full h-[380px] object-cover" loading="lazy" />
@@ -743,7 +743,7 @@ export default function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" aria-label="Отзывы клиентов студии дизайна интерьера" className="py-20 bg-card border-y border-border">
+      <section id="reviews" aria-label="Отзывы клиентов студии дизайна интерьера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Отзывы</p>
@@ -755,7 +755,7 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" aria-label="Частые вопросы о дизайне интерьера" className="py-20">
+      <section id="faq" aria-label="Частые вопросы о дизайне интерьера" className="py-14">
         <div className="max-w-3xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Вопросы</p>
@@ -783,7 +783,7 @@ export default function Index() {
       </section>
 
       {/* CALCULATOR */}
-      <section id="calculator" aria-label="Калькулятор стоимости дизайна интерьера" className="py-20 border-y border-border bg-background">
+      <section id="calculator" aria-label="Калькулятор стоимости дизайна интерьера" className="py-14 border-y border-border bg-background">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Онлайн-расчёт</p>
@@ -887,7 +887,7 @@ export default function Index() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-20 bg-card border-t border-border">
+      <section id="contact" className="py-14 bg-card border-t border-border">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
           <Reveal>
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Начать проект</p>
