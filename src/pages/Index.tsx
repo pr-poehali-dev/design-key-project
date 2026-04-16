@@ -601,6 +601,62 @@ export default function Index() {
         </div>
       </section>
 
+      {/* MISSION & VALUES */}
+      <section id="mission" aria-label="Миссия и ценности студии" className="py-24">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          {/* Фото руководителя */}
+          <Reveal className="relative order-2 md:order-1">
+            <div className="relative">
+              <div className="w-full h-[560px] bg-card border border-border flex items-center justify-center overflow-hidden">
+                <div className="text-center text-muted-foreground">
+                  <Icon name="UserRound" size={80} className="mx-auto mb-4 text-border" />
+                  <p className="font-body text-xs tracking-widest uppercase">Фото Анастасии</p>
+                </div>
+              </div>
+              {/* Плашка с именем */}
+              <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
+                <p className="font-display text-xl font-medium text-foreground">Анастасия Белецкая</p>
+                <p className="font-body text-xs tracking-[0.2em] text-[hsl(36,55%,62%)] uppercase mt-1">Основатель и главный архитектор Студии ДА</p>
+              </div>
+              {/* Акцентный уголок */}
+              <div className="absolute top-6 -left-3 w-6 h-24 bg-[hsl(36,55%,62%)]" />
+            </div>
+          </Reveal>
+
+          {/* Текст */}
+          <Reveal delay={0.15} className="order-1 md:order-2">
+            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Наша миссия</p>
+            <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-7">
+              Создавать пространство,<br />
+              <em className="italic font-normal text-[hsl(36,55%,62%)]">которое меняет жизнь</em>
+            </h2>
+            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
+              Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — переводить ваши мечты в конкретное, функциональное и красивое пространство, без стресса и лишних затрат.
+            </p>
+
+            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-6 section-rule">Наши ценности</p>
+            <ul className="space-y-5">
+              {[
+                { icon: "Gem",           title: "Честность",       desc: "Прозрачный бюджет, чёткие сроки и никаких скрытых расходов — с первой встречи до переезда." },
+                { icon: "HeartHandshake", title: "Забота о клиенте", desc: "Мы слышим вас, а не навязываем тренды. Каждое решение — под ваш образ жизни." },
+                { icon: "Layers",         title: "Внимание к деталям", desc: "Красота рождается в деталях: в фактуре плитки, высоте светильника, ширине шва паркета." },
+                { icon: "Leaf",           title: "Ответственность",  desc: "Мы берём проект до конца — не пропадаем после согласования, а сопровождаем до финальной уборки." },
+              ].map((v, i) => (
+                <li key={i} className="flex items-start gap-4">
+                  <div className="w-9 h-9 border border-[hsl(36,55%,62%)]/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name={v.icon as "Gem"} size={15} className="text-[hsl(36,55%,62%)]" />
+                  </div>
+                  <div>
+                    <p className="font-body text-sm font-medium text-foreground mb-0.5">{v.title}</p>
+                    <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
       {/* PROCESS */}
       <section id="process" aria-label="Этапы работы студии дизайна интерьера" className="py-20">
         <div className="max-w-6xl mx-auto px-6">
