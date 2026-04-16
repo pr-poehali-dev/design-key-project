@@ -107,13 +107,13 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 }
 
 function MissionPhoto() {
-  const { ref, offset } = useParallax(0.15);
+  const { ref, offset } = useParallax(0.08);
   return (
-    <div ref={ref} className="w-full h-[580px] overflow-hidden">
+    <div ref={ref} className="w-full overflow-hidden">
       <img
         src="https://cdn.poehali.dev/files/45ced571-529d-4290-8de8-f372a15d4a5b.jpg"
         alt="Анастасия Белецкая — основатель Студии ДА"
-        className="w-full h-[130%] object-cover object-center"
+        className="w-full object-contain"
         style={{ transform: `translateY(${offset}px)`, willChange: "transform" }}
         loading="lazy"
       />
