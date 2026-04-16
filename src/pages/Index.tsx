@@ -438,6 +438,7 @@ export default function Index() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [promoOpen, setPromoOpen] = useState(false);
+  const [promoApplied, setPromoApplied] = useState(false);
 
   useEffect(() => {
     const shown = sessionStorage.getItem("promo_shown");
@@ -459,7 +460,7 @@ export default function Index() {
       const res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, email: form.email, object_type: form.type, message: form.message }),
+        body: JSON.stringify({ name: form.name, phone: form.phone, email: form.email, object_type: form.type, message: form.message, promo: promoApplied ? "скидка_10%" : undefined }),
       });
       if (res.ok) {
         setFormState("success");
@@ -876,6 +877,12 @@ export default function Index() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {promoApplied && (
+                  <div className="flex items-center gap-3 bg-[hsl(36,55%,62%)]/10 border border-[hsl(36,55%,62%)]/40 px-4 py-3">
+                    <Icon name="Tag" size={14} className="text-[hsl(36,55%,62%)] flex-shrink-0" />
+                    <p className="font-body text-xs text-foreground">Скидка <span className="font-semibold text-[hsl(36,55%,62%)]">10%</span> применена — укажите промокод <span className="font-semibold">САЙТ10</span> при общении с менеджером</p>
+                  </div>
+                )}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="font-body text-xs text-muted-foreground tracking-wide uppercase block mb-2">Ваше имя *</label>
@@ -982,7 +989,7 @@ export default function Index() {
       {promoOpen && (
         <PromoPopup
           onClose={() => setPromoOpen(false)}
-          onCta={() => { setPromoOpen(false); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+          onCta={() => { setPromoOpen(false); setPromoApplied(true); setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), 100); }}
         />
       )}
     </div>
