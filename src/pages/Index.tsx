@@ -238,7 +238,7 @@ function PrivacyModal({ onClose }: { onClose: () => void }) {
 
           <section>
             <h3 className="font-medium text-foreground mb-2">1. Общие положения</h3>
-            <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей, которые оставляют заявку на сайте Студии дизайна интерьера. Обработка персональных данных осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+            <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей, которые оставляют заявку на сайте Студии дизайна и архитектуры Анастасии Белецкой («Студия ДА»). Обработка персональных данных осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
           </section>
 
           <section>
@@ -290,7 +290,7 @@ function PrivacyModal({ onClose }: { onClose: () => void }) {
 
           <section>
             <h3 className="font-medium text-foreground mb-2">8. Контакты</h3>
-            <p>Студия дизайна интерьера<br />Телефон: 8 908 992-12-47<br />Email: Studioda.1@yandex.ru<br />Москва, Россия</p>
+            <p>Студия дизайна и архитектуры Анастасии Белецкой («Студия ДА»)<br />Телефон: 8 908 992-12-47<br />Email: Studioda.1@yandex.ru<br />Москва, Россия</p>
           </section>
         </div>
         <div className="px-8 py-5 border-t border-border">
@@ -491,7 +491,10 @@ export default function Index() {
       {/* NAV */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="font-display text-lg tracking-wide text-foreground">Студия интерьера</span>
+          <div className="flex flex-col leading-tight">
+            <span className="font-display text-base tracking-wide text-foreground">Студия ДА</span>
+            <span className="font-body text-[10px] tracking-[0.15em] text-muted-foreground uppercase">Анастасия Белецкая</span>
+          </div>
           <nav className="hidden md:flex items-center gap-7">
             {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Портфолио","portfolio"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)}
@@ -528,7 +531,7 @@ export default function Index() {
           <div>
             <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5"
               style={{ animation: "fadeUp 0.7s 0.1s ease both" }}>
-              Дизайн интерьера под ключ
+              Студия дизайна и архитектуры Анастасии Белецкой
             </p>
             <h1 className="font-display text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6"
               style={{ animation: "fadeUp 0.7s 0.2s ease both" }}>
@@ -977,8 +980,11 @@ export default function Index() {
       {/* FOOTER */}
       <footer className="bg-background border-t border-border py-8">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="font-display text-base tracking-wide text-foreground/60">Студия дизайна интерьера</span>
-          <p className="font-body text-xs text-muted-foreground">© 2026 Дизайн интерьера под ключ для жилых и коммерческих объектов</p>
+          <div className="flex flex-col">
+            <span className="font-display text-base tracking-wide text-foreground/70">Студия ДА</span>
+            <span className="font-body text-[10px] tracking-[0.15em] text-muted-foreground uppercase">Анастасия Белецкая</span>
+          </div>
+          <p className="font-body text-xs text-muted-foreground">© 2026 Студия дизайна и архитектуры Анастасии Белецкой</p>
           <button onClick={() => setPrivacyOpen(true)} className="font-body text-xs text-muted-foreground hover:text-[hsl(36,55%,62%)] transition-colors underline underline-offset-2">
             Политика конфиденциальности
           </button>
