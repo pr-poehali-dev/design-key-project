@@ -629,14 +629,19 @@ export default function Index() {
           </div>
 
           {/* Десктоп: сетка 2×2 */}
-          <div className="hidden md:grid grid-cols-2 gap-px bg-white/10"
+          <div className="hidden md:block stats-border"
             style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
-            {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
-              <div key={n} className="bg-black/35 backdrop-blur-md p-8">
-                <div className="font-display text-4xl font-medium text-[hsl(36,55%,62%)] mb-1">{n}</div>
-                <div className="font-body text-xs text-white/70">{l}</div>
-              </div>
-            ))}
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="1" y="1" width="98" height="98" rx="0" />
+            </svg>
+            <div className="grid grid-cols-2 gap-px bg-white/10">
+              {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
+                <div key={n} className="bg-black/35 backdrop-blur-md p-8">
+                  <div className="font-display text-6xl font-medium text-[hsl(36,55%,62%)] mb-2 leading-none">{n}</div>
+                  <div className="font-body text-sm text-white/80 tracking-wide">{l}</div>
+                </div>
+              ))}
+            </div>
           </div>
           {/* Мобайл: горизонтальная полоса */}
           <div className="grid grid-cols-2 gap-px bg-white/10 md:hidden mt-2"
