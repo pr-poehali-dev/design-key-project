@@ -119,6 +119,11 @@ const NADSOR_PHOTOS = [
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg",
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg",
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/f78081bb-6384-4da1-9890-3bae50de289c.jpeg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/95900c7c-bbd9-4c36-a4cd-c8aa5ca44731.jpeg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/419a14f8-8865-4968-9246-728b56d3d8d7.JPG",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/a5cc70f3-2bb8-43bf-9813-3eb514a02820.JPG",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/e62a7bd0-ef9a-4921-bdd7-f291c221ad48.jpg",
 ];
 
 function BeforeAfterSlider({ before, after, className = "aspect-[4/3]" }: { before: string; after: string; className?: string }) {
