@@ -538,7 +538,13 @@ function NadsorStrip({ photos }: { photos: string[] }) {
 }
 
 const PORTFOLIO = [
-  { category: "apartment", title: "Квартира 80 м², Москва", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/2857c0b1-9dd4-4268-ba37-4968d4984948.jpg"] },
+  { category: "apartment", title: "Квартира 80 м², Владивосток", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", imgs: [
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/6c6d90cb-4a22-4c13-b9b1-c6b77fb7d42c.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/9ea34aec-4cc3-44ad-9146-3920eb948cef.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/5ebd90b8-9569-429b-bc81-e8d95c0da36d.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/a7125c35-d013-4477-987b-3e9eb042a745.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/63a6430b-a962-43a1-a3b2-d5d4d16792bc.jpg",
+  ]},
   { category: "house", title: "Дом 250 м², Владивосток. Садгород", desc: "Тёплый современный дом с высокими потолками, кухней-столовой и зоной отдыха у камина. Полный цикл: от замера до мебели.", imgs: [
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/c00082a6-6651-44e7-8839-b271318c2494.JPG",
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/6c5f368d-4d56-4ba5-8edd-190b264d4f4d.JPG",
