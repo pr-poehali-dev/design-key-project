@@ -994,9 +994,10 @@ export default function Index() {
                 { icon: "Phone", text: "8 908 992-12-47" },
                 { icon: "Mail", text: "Studioda.1@yandex.ru" },
                 { icon: "MapPin", text: "Москва, Санкт-Петербург, вся Россия" },
+                { icon: "Building2", text: "Головной офис: Владивосток, ул. Некрасовская 52а, офис 307" },
               ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center gap-3">
-                  <Icon name={icon as "Phone" | "Mail" | "MapPin"} size={14} className="text-gold" fallback="Info" />
+                  <Icon name={icon as "Phone" | "Mail" | "MapPin" | "Building2"} size={14} className="text-gold" fallback="Info" />
                   <span className="font-body text-sm text-muted-foreground">{text}</span>
                 </div>
               ))}
