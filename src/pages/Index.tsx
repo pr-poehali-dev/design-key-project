@@ -780,66 +780,74 @@ export default function Index() {
 
       {/* MISSION & VALUES */}
       <section id="mission" aria-label="Миссия и ценности студии" className="py-14">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+        <div className="max-w-6xl mx-auto px-6">
 
-          {/* Левая колонка: фото + два блока */}
-          <Reveal className="relative">
-            <div className="relative mb-6">
-              <MissionPhoto />
-              <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
-                <p className="font-display text-xl font-medium text-foreground">Анастасия Белецкая</p>
-                <p className="font-body text-xs tracking-[0.2em] text-gold uppercase mt-1">Основатель и главный архитектор Студии ДА</p>
+          {/* Верхние две колонки: фото + текст миссии и ценности */}
+          <div className="grid md:grid-cols-2 gap-16 items-start mb-10">
+
+            {/* Левая: фото */}
+            <Reveal className="relative">
+              <div className="relative">
+                <MissionPhoto />
+                <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
+                  <p className="font-display text-xl font-medium text-foreground">Анастасия Белецкая</p>
+                  <p className="font-body text-xs tracking-[0.2em] text-gold uppercase mt-1">Основатель и главный архитектор Студии ДА</p>
+                </div>
+                <div className="absolute top-6 -left-3 w-6 h-24 bg-gold" />
               </div>
-              <div className="absolute top-6 -left-3 w-6 h-24 bg-gold" />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
+            </Reveal>
+
+            {/* Правая: миссия + ценности */}
+            <Reveal delay={0.15}>
+              <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Наша миссия</p>
+              <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-7">
+                <GoldLine>Создавать пространство,</GoldLine><br />
+                <em className="italic font-normal text-gold">которое меняет жизнь</em>
+              </h2>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed mb-8">
+                Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — создавать и реализовывать интерьеры, применяя новые технологии и тенденции, учитываем потребности заказчика. Мы создаём дружескую атмосферу, стремясь к идеальному результату!
+              </p>
+
+              <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-6 section-rule">Наши ценности</p>
+              <ul className="space-y-5">
+                {[
+                  { icon: "Gem",            title: "Честность",          desc: "Прозрачный бюджет, чёткие сроки и никаких скрытых расходов — с первой встречи до переезда." },
+                  { icon: "HeartHandshake", title: "Забота о клиенте",   desc: "Мы слышим вас, а не навязываем тренды. Каждое решение — под ваш образ жизни." },
+                  { icon: "Layers",         title: "Внимание к деталям", desc: "Красота рождается в деталях: в фактуре плитки, высоте светильника, ширине шва паркета." },
+                  { icon: "Leaf",           title: "Ответственность",    desc: "Мы берём проект до конца — не пропадаем после согласования, а сопровождаем до финальной уборки." },
+                ].map((v, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <div className="w-9 h-9 border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Icon name={v.icon as "Gem"} size={15} className="text-gold icon-spin" />
+                    </div>
+                    <div>
+                      <p className="font-body text-sm font-medium text-foreground mb-0.5">{v.title}</p>
+                      <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+
+          {/* Нижняя полоса на всю ширину */}
+          <Reveal delay={0.2}>
+            <div className="grid grid-cols-2 gap-px bg-gold/20">
               {[
-                { icon: "Wrench", title: "Техническая и моральная поддержка", desc: "От первого вопроса до финальной уборки." },
-                { icon: "PackageCheck", title: "Комплексный подход", desc: "От покупки материалов до переезда." },
+                { icon: "Wrench", title: "Техническая и моральная поддержка", desc: "Помогаем клиенту на протяжении всего ремонта — от первого вопроса до финальной уборки." },
+                { icon: "PackageCheck", title: "Комплексный подход", desc: "От покупки материалов до переезда — берём на себя весь путь обустройства пространства." },
               ].map((v, i) => (
-                <div key={i} className="flex flex-col items-center text-center gap-3 p-4 border border-gold/20 bg-card/50">
-                  <div className="w-11 h-11 border border-gold/40 flex items-center justify-center flex-shrink-0">
-                    <Icon name={v.icon as "Wrench"} size={18} className="text-gold icon-spin" />
+                <div key={i} className="flex items-center gap-5 p-6 bg-card">
+                  <div className="w-12 h-12 border border-gold/40 flex items-center justify-center flex-shrink-0">
+                    <Icon name={v.icon as "Wrench"} size={20} className="text-gold icon-spin" />
                   </div>
                   <div>
-                    <p className="font-body text-xs font-medium text-foreground mb-1">{v.title}</p>
+                    <p className="font-display text-lg font-medium text-foreground mb-1">{v.title}</p>
                     <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </Reveal>
-
-          {/* Правая колонка: текст миссии + ценности */}
-          <Reveal delay={0.15}>
-            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Наша миссия</p>
-            <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-7">
-              <GoldLine>Создавать пространство,</GoldLine><br />
-              <em className="italic font-normal text-gold">которое меняет жизнь</em>
-            </h2>
-            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
-              Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — создавать и реализовывать интерьеры, применяя новые технологии и тенденции, учитываем потребности заказчика. Мы создаём дружескую атмосферу, стремясь к идеальному результату!
-            </p>
-
-            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-6 section-rule">Наши ценности</p>
-            <ul className="space-y-5">
-              {[
-                { icon: "Gem",            title: "Честность",          desc: "Прозрачный бюджет, чёткие сроки и никаких скрытых расходов — с первой встречи до переезда." },
-                { icon: "HeartHandshake", title: "Забота о клиенте",   desc: "Мы слышим вас, а не навязываем тренды. Каждое решение — под ваш образ жизни." },
-                { icon: "Layers",         title: "Внимание к деталям", desc: "Красота рождается в деталях: в фактуре плитки, высоте светильника, ширине шва паркета." },
-                { icon: "Leaf",           title: "Ответственность",    desc: "Мы берём проект до конца — не пропадаем после согласования, а сопровождаем до финальной уборки." },
-              ].map((v, i) => (
-                <li key={i} className="flex items-start gap-4">
-                  <div className="w-9 h-9 border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name={v.icon as "Gem"} size={15} className="text-gold icon-spin" />
-                  </div>
-                  <div>
-                    <p className="font-body text-sm font-medium text-foreground mb-0.5">{v.title}</p>
-                    <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </Reveal>
 
         </div>
