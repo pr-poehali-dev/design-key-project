@@ -577,12 +577,70 @@ const PORTFOLIO_FILTERS = [
 
 function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) {
   const [idx, setIdx] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const multi = p.imgs.length > 1;
   const { ref, visible } = useVisible();
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(false);
+      if (e.key === "ArrowRight") setIdx(i => (i + 1) % p.imgs.length);
+      if (e.key === "ArrowLeft") setIdx(i => (i - 1 + p.imgs.length) % p.imgs.length);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox, p.imgs.length]);
+
   return (
-    <Reveal delay={delay}>
+    <>
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4"
+          onClick={() => setLightbox(false)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white w-10 h-10 flex items-center justify-center"
+            onClick={() => setLightbox(false)}
+          >
+            <Icon name="X" size={24} />
+          </button>
+          {multi && (
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white w-10 h-10 flex items-center justify-center"
+              onClick={e => { e.stopPropagation(); setIdx(i => (i - 1 + p.imgs.length) % p.imgs.length); }}
+            >
+              <Icon name="ChevronLeft" size={32} />
+            </button>
+          )}
+          <img
+            src={p.imgs[idx]}
+            alt={p.title}
+            className="max-h-[88vh] max-w-full object-contain"
+            onClick={e => e.stopPropagation()}
+          />
+          {multi && (
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white w-10 h-10 flex items-center justify-center"
+              onClick={e => { e.stopPropagation(); setIdx(i => (i + 1) % p.imgs.length); }}
+            >
+              <Icon name="ChevronRight" size={32} />
+            </button>
+          )}
+          {multi && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {p.imgs.map((_, i) => (
+                <button key={i} onClick={e => { e.stopPropagation(); setIdx(i); }}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-gold" : "bg-white/30"}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      <Reveal delay={delay}>
       <div className="bg-background group overflow-hidden">
-        <div ref={ref} className="relative overflow-hidden aspect-[4/3]">
+        <div ref={ref} className="relative overflow-hidden aspect-[4/3] cursor-zoom-in" onClick={() => setLightbox(true)}>
           <img
             src={p.imgs[idx]}
             alt={p.title}
@@ -593,23 +651,26 @@ function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) 
               transition: `transform 0.8s ${delay + 0.1}s cubic-bezier(0.4,0,0.2,1), opacity 0.8s ${delay + 0.1}s ease`,
             }}
           />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+            <Icon name="ZoomIn" size={28} className="text-white opacity-0 group-hover:opacity-80 transition-opacity drop-shadow-lg" />
+          </div>
           {multi && (
             <>
               <button
-                onClick={() => setIdx(i => (i - 1 + p.imgs.length) % p.imgs.length)}
+                onClick={e => { e.stopPropagation(); setIdx(i => (i - 1 + p.imgs.length) % p.imgs.length); }}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 flex items-center justify-center transition-colors z-10"
               >
                 <Icon name="ChevronLeft" size={16} />
               </button>
               <button
-                onClick={() => setIdx(i => (i + 1) % p.imgs.length)}
+                onClick={e => { e.stopPropagation(); setIdx(i => (i + 1) % p.imgs.length); }}
                 className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-8 h-8 flex items-center justify-center transition-colors z-10"
               >
                 <Icon name="ChevronRight" size={16} />
               </button>
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
                 {p.imgs.map((_, i) => (
-                  <button key={i} onClick={() => setIdx(i)}
+                  <button key={i} onClick={e => { e.stopPropagation(); setIdx(i); }}
                     className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-gold" : "bg-white/50"}`}
                   />
                 ))}
@@ -622,7 +683,8 @@ function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) 
           <p className="font-body text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
         </div>
       </div>
-    </Reveal>
+      </Reveal>
+    </>
   );
 }
 
