@@ -55,7 +55,6 @@ const CALC_PACKAGES = [
 ];
 
 const PROBLEMS = [
-  "Носить папки с чертежами",
   "Общаться с кучей подрядчиков",
   "Переплачивать за «промежуточные» ошибки",
   "«Дорабатывать» интерьер уже после ремонта",
@@ -112,6 +111,51 @@ function GoldLine({ children, className = "" }: { children: React.ReactNode; cla
     <span ref={ref as React.RefObject<HTMLSpanElement>} className={`underline-gold ${visible ? "is-visible" : ""} ${className}`}>
       {children}
     </span>
+  );
+}
+
+const NADSOR_PHOTOS = [
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/7b882352-dada-4fbc-b04a-d1444e58173b.jpg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg",
+];
+
+function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+
+  const move = (clientX: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    setPos(pct);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden select-none cursor-ew-resize"
+      onMouseDown={() => { dragging.current = true; }}
+      onMouseUp={() => { dragging.current = false; }}
+      onMouseLeave={() => { dragging.current = false; }}
+      onMouseMove={e => { if (dragging.current) move(e.clientX); }}
+      onTouchMove={e => move(e.touches[0].clientX)}
+    >
+      <img src={after} alt="После" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
+        <img src={before} alt="До" className="absolute inset-0 h-full object-cover" style={{ width: containerRef.current?.offsetWidth ?? "100vw", maxWidth: "none" }} />
+      </div>
+      <div className="absolute top-0 bottom-0 w-0.5 bg-gold shadow-lg" style={{ left: `${pos}%` }}>
+        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-gold flex items-center justify-center shadow-xl">
+          <Icon name="ChevronsLeftRight" size={16} className="text-charcoal" />
+        </div>
+      </div>
+      <div className="absolute top-3 left-3 bg-black/60 text-white font-body text-xs px-2 py-1">До</div>
+      <div className="absolute top-3 right-3 bg-gold text-charcoal font-body text-xs px-2 py-1 font-medium">После</div>
+    </div>
   );
 }
 
@@ -611,8 +655,8 @@ export default function Index() {
       {/* HERO */}
       <section aria-label="Главный экран" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={IMG_RESULT} alt="Готовый интерьер квартиры под ключ — студия дизайна" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
-          <div className="absolute inset-0 bg-black/50" />
+          <BeforeAfterSlider before={IMG_PROCESS} after={IMG_RESULT} />
+          <div className="absolute inset-0 bg-black/50 pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center w-full">
@@ -763,10 +807,23 @@ export default function Index() {
               <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-gold">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
             </div>
           </Reveal>
-          <Reveal delay={0.15} className="relative">
-            <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[420px] object-cover" loading="lazy" />
-            <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
-              <p className="font-body text-xs text-background font-medium">Авторский надзор на каждом этапе</p>
+          <Reveal delay={0.15} className="relative flex flex-col gap-4">
+            <div className="relative">
+              <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[340px] object-cover" loading="lazy" />
+              <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
+                <p className="font-body text-xs text-charcoal font-medium">Авторский надзор на каждом этапе</p>
+              </div>
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {NADSOR_PHOTOS.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`Авторский надзор ${i + 1}`}
+                  className="w-24 h-16 object-cover flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                />
+              ))}
             </div>
           </Reveal>
         </div>

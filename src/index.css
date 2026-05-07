@@ -184,6 +184,14 @@
     animation: borderRun 2.2s 0.8s ease forwards;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .section-rule::before {
     content: "";
     display: block;
