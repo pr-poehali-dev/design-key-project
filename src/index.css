@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,49 +7,60 @@
 
 @layer base {
   :root {
-    --background: 36 20% 97%;
-    --foreground: 30 15% 12%;
+    /* Фон — тёплый кремовый/бежевый */
+    --background: 38 28% 94%;
+    --foreground: 20 10% 10%;
 
-    --card: 36 15% 93%;
-    --card-foreground: 30 15% 12%;
+    /* Карточки — чуть темнее фона, кофейный оттенок */
+    --card: 35 18% 88%;
+    --card-foreground: 20 10% 10%;
 
-    --popover: 36 15% 93%;
-    --popover-foreground: 30 15% 12%;
+    --popover: 35 18% 88%;
+    --popover-foreground: 20 10% 10%;
 
-    --primary: 30 15% 12%;
-    --primary-foreground: 36 20% 97%;
+    /* Primary — почти чёрный (чёрный из визитки) */
+    --primary: 20 8% 8%;
+    --primary-foreground: 38 28% 94%;
 
-    --secondary: 36 15% 90%;
-    --secondary-foreground: 30 15% 12%;
+    /* Secondary — кофейный */
+    --secondary: 30 20% 78%;
+    --secondary-foreground: 20 10% 10%;
 
-    --muted: 36 15% 90%;
-    --muted-foreground: 30 10% 42%;
+    /* Muted — приглушённый бежевый */
+    --muted: 36 18% 84%;
+    --muted-foreground: 25 12% 38%;
 
-    --accent: 36 55% 55%;
-    --accent-foreground: 36 20% 97%;
+    /* Accent — золото */
+    --accent: 40 65% 52%;
+    --accent-foreground: 20 8% 8%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 36 20% 97%;
+    --destructive-foreground: 38 28% 94%;
 
-    --border: 36 15% 82%;
-    --input: 36 15% 82%;
-    --ring: 36 55% 55%;
+    /* Border — тёплая линия */
+    --border: 35 20% 76%;
+    --input: 35 20% 76%;
+    --ring: 40 65% 52%;
 
     --radius: 0px;
 
-    --gold: 36 55% 62%;
-    --cream: 40 20% 92%;
-    --charcoal: 30 8% 8%;
-    --mid: 30 8% 55%;
+    /* Кастомные переменные */
+    --gold: 40 65% 52%;
+    --gold-light: 40 55% 70%;
+    --cream: 38 28% 94%;
+    --beige: 35 22% 88%;
+    --coffee: 25 30% 30%;
+    --charcoal: 20 8% 8%;
+    --mid: 25 12% 50%;
 
-    --sidebar-background: 30 8% 8%;
-    --sidebar-foreground: 40 20% 92%;
-    --sidebar-primary: 40 20% 92%;
-    --sidebar-primary-foreground: 30 8% 8%;
-    --sidebar-accent: 30 8% 14%;
-    --sidebar-accent-foreground: 40 20% 92%;
-    --sidebar-border: 30 8% 18%;
-    --sidebar-ring: 36 55% 62%;
+    --sidebar-background: 20 8% 8%;
+    --sidebar-foreground: 38 28% 94%;
+    --sidebar-primary: 38 28% 94%;
+    --sidebar-primary-foreground: 20 8% 8%;
+    --sidebar-accent: 20 8% 14%;
+    --sidebar-accent-foreground: 38 28% 94%;
+    --sidebar-border: 20 8% 18%;
+    --sidebar-ring: 40 65% 52%;
   }
 }
 
@@ -88,6 +100,12 @@
   }
   .bg-charcoal {
     background-color: hsl(var(--charcoal));
+  }
+  .bg-dark {
+    background-color: hsl(var(--charcoal));
+  }
+  .bg-coffee {
+    background-color: hsl(var(--coffee));
   }
 
   @keyframes fadeUp {
@@ -145,5 +163,15 @@
     height: 1px;
     background: hsl(var(--gold));
     margin-bottom: 1.25rem;
+  }
+
+  .section-rule-dark::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: hsl(var(--gold));
+    margin-bottom: 1.25rem;
+    opacity: 0.7;
   }
 }

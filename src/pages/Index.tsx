@@ -163,10 +163,10 @@ function MiniPlayer() {
       />
       <button
         onClick={toggle}
-        className="w-10 h-10 flex-shrink-0 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors"
+        className="w-10 h-10 flex-shrink-0 border border-border flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
         aria-label={playing ? "Пауза" : "Играть"}
       >
-        <Icon name={playing ? "Pause" : "Play"} size={16} className="text-[hsl(36,55%,62%)]" />
+        <Icon name={playing ? "Pause" : "Play"} size={16} className="text-gold" />
       </button>
       <div className="flex-1 min-w-0">
         <p className="font-body text-xs font-medium text-foreground truncate">{TRACK.title}</p>
@@ -179,7 +179,7 @@ function MiniPlayer() {
             a.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
           }}>
           <div
-            className="absolute top-0 left-0 h-px bg-[hsl(36,55%,62%)] transition-all"
+            className="absolute top-0 left-0 h-px bg-gold transition-all"
             style={{ width: duration ? `${(progress / duration) * 100}%` : "0%" }}
           />
         </div>
@@ -210,7 +210,7 @@ function PromoPopup({ onClose, onCta }: { onClose: () => void; onCta: () => void
           <Icon name="X" size={16} />
         </button>
 
-        <div className="bg-[hsl(36,55%,62%)] px-8 py-7 text-background">
+        <div className="bg-gold px-8 py-7 text-[hsl(var(--charcoal))]">
           <p className="font-body text-xs tracking-[0.3em] uppercase mb-2 opacity-80">Специальное предложение</p>
           <h2 className="font-display text-4xl font-medium leading-tight mb-1">Скидка 10%</h2>
           <p className="font-display text-lg font-light opacity-90">на дизайн-проект</p>
@@ -224,8 +224,8 @@ function PromoPopup({ onClose, onCta }: { onClose: () => void; onCta: () => void
           <ul className="space-y-2 mb-7">
             {["Бесплатный предварительный расчёт", "3D-визуализация в подарок", "Личный дизайнер на весь проект"].map((item, i) => (
               <li key={i} className="flex items-center gap-3">
-                <div className="w-4 h-4 border border-[hsl(36,55%,62%)] flex items-center justify-center flex-shrink-0">
-                  <Icon name="Check" size={10} className="text-[hsl(36,55%,62%)]" />
+                <div className="w-4 h-4 border border-gold flex items-center justify-center flex-shrink-0">
+                  <Icon name="Check" size={10} className="text-gold" />
                 </div>
                 <span className="font-body text-xs text-foreground/80">{item}</span>
               </li>
@@ -234,7 +234,7 @@ function PromoPopup({ onClose, onCta }: { onClose: () => void; onCta: () => void
 
           <button
             onClick={onCta}
-            className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors mb-3"
+            className="w-full bg-gold text-background font-body text-sm py-3.5 hover:bg-[hsl(40,55%,44%)] transition-colors mb-3"
           >
             Получить скидку 10%
           </button>
@@ -263,7 +263,7 @@ function PrivacyModal({ onClose }: { onClose: () => void }) {
       >
         <div className="flex items-center justify-between px-8 py-5 border-b border-border">
           <h2 className="font-display text-xl font-medium text-foreground">Политика конфиденциальности</h2>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center hover:text-[hsl(36,55%,62%)] transition-colors">
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center hover:text-gold transition-colors">
             <Icon name="X" size={18} className="text-muted-foreground" />
           </button>
         </div>
@@ -329,7 +329,7 @@ function PrivacyModal({ onClose }: { onClose: () => void }) {
         </div>
         <div className="px-8 py-5 border-t border-border">
           <button onClick={onClose}
-            className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3 hover:bg-[hsl(36,55%,55%)] transition-colors">
+            className="w-full bg-gold text-background font-body text-sm py-3 hover:bg-[hsl(40,55%,44%)] transition-colors">
             Понятно, закрыть
           </button>
         </div>
@@ -343,7 +343,7 @@ function StarRating({ stars }: { stars: number }) {
     <div className="flex gap-0.5 mb-4">
       {Array.from({ length: 5 }).map((_, i) => (
         <Icon key={i} name="Star" size={13}
-          className={i < stars ? "text-[hsl(36,55%,62%)] fill-[hsl(36,55%,62%)]" : "text-border"} />
+          className={i < stars ? "text-gold fill-[hsl(var(--gold))]" : "text-border"} />
       ))}
     </div>
   );
@@ -377,11 +377,11 @@ function ReviewsGrid() {
           <p className="font-body text-xs text-muted-foreground">{page * perPage + 1}–{Math.min(page * perPage + perPage, REVIEWS.length)} из {REVIEWS.length} отзывов</p>
           <div className="flex gap-2">
             <button onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}
-              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-gold transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
               <Icon name="ChevronLeft" size={16} className="text-muted-foreground" />
             </button>
             <button onClick={() => setPage(p => Math.min(pages - 1, p + 1))} disabled={page === pages - 1}
-              className="w-9 h-9 border border-border flex items-center justify-center hover:border-[hsl(36,55%,62%)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              className="w-9 h-9 border border-border flex items-center justify-center hover:border-gold transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
               <Icon name="ChevronRight" size={16} className="text-muted-foreground" />
             </button>
           </div>
@@ -446,7 +446,7 @@ function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) 
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
                 {p.imgs.map((_, i) => (
                   <button key={i} onClick={() => setIdx(i)}
-                    className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-[hsl(36,55%,62%)]" : "bg-white/50"}`}
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-gold" : "bg-white/50"}`}
                   />
                 ))}
               </div>
@@ -470,7 +470,7 @@ function PortfolioSection() {
     <section id="portfolio" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <Reveal className="mb-10">
-          <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Портфолио</p>
+          <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Портфолио</p>
           <h2 className="font-display text-4xl font-medium text-foreground mb-3">Наши проекты по типам объектов</h2>
           <p className="font-body text-sm text-muted-foreground max-w-xl">Выберите категорию, чтобы посмотреть реальные примеры интерьера от замера до переезда.</p>
         </Reveal>
@@ -480,7 +480,7 @@ function PortfolioSection() {
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
-              className={`font-body text-xs px-4 py-2 border transition-colors ${filter === f.key ? "bg-[hsl(36,55%,62%)] text-background border-[hsl(36,55%,62%)]" : "border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}
+              className={`font-body text-xs px-4 py-2 border transition-colors ${filter === f.key ? "bg-gold text-background border-gold" : "border-border text-muted-foreground hover:border-gold hover:text-foreground"}`}
             >
               {f.label}
             </button>
@@ -494,7 +494,7 @@ function PortfolioSection() {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#contact" className="inline-block font-body text-sm border border-border px-8 py-3 text-foreground hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
+          <a href="#contact" className="inline-block font-body text-sm border border-border px-8 py-3 text-foreground hover:border-gold hover:text-gold transition-colors">
             Обсудить ваш проект
           </a>
         </div>
@@ -562,32 +562,32 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
 
       {/* NAV */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+      <header className="fixed top-0 inset-x-0 z-50 border-b border-gold/20 bg-charcoal/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex flex-col leading-tight">
-            <span className="font-display text-base tracking-wide text-foreground">Студия ДА</span>
-            <span className="font-body text-[10px] tracking-[0.15em] text-muted-foreground uppercase">Анастасия Белецкая</span>
+            <span className="font-display text-base tracking-widest text-gold">STUDIODA</span>
+            <span className="font-body text-[9px] tracking-[0.2em] text-white/40 uppercase">Анастасия Белецкая</span>
           </div>
           <nav className="hidden md:flex items-center gap-7">
             {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Портфолио","portfolio"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"]].map(([l,id]) => (
               <button key={id} onClick={() => scrollTo(id)}
-                className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+                className="font-body text-sm text-white/60 hover:text-gold transition-colors">
                 {l}
               </button>
             ))}
           </nav>
           <button onClick={() => scrollTo("contact")}
-            className="hidden md:block font-body text-sm bg-foreground text-background px-5 py-2 hover:bg-[hsl(36,55%,62%)] hover:text-background transition-colors">
+            className="hidden md:block font-body text-sm border border-gold/50 text-gold px-5 py-2 hover:bg-gold hover:text-charcoal transition-colors">
             Записаться
           </button>
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="md:hidden text-white/70" onClick={() => setMenuOpen(!menuOpen)}>
             <Icon name={menuOpen ? "X" : "Menu"} size={20} />
           </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden bg-background border-t border-border px-6 py-4 flex flex-col gap-3">
+          <div className="md:hidden bg-charcoal border-t border-gold/20 px-6 py-4 flex flex-col gap-3">
             {[["О нас","about"],["Процесс","process"],["Преимущества","features"],["Портфолио","portfolio"],["Отзывы","reviews"],["Калькулятор","calculator"],["FAQ","faq"],["Контакт","contact"]].map(([l,id]) => (
-              <button key={id} onClick={() => scrollTo(id)} className="text-left font-body text-sm py-1">{l}</button>
+              <button key={id} onClick={() => scrollTo(id)} className="text-left font-body text-sm py-1 text-white/60 hover:text-gold transition-colors">{l}</button>
             ))}
           </div>
         )}
@@ -602,14 +602,14 @@ export default function Index() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center w-full">
           <div>
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5"
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5"
               style={{ animation: "fadeUp 0.7s 0.1s ease both" }}>
               Студия дизайна и архитектуры Анастасии Белецкой
             </p>
             <h1 className="font-display text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6"
               style={{ animation: "fadeUp 0.7s 0.2s ease both" }}>
               От замера<br />
-              <em className="italic font-normal text-[hsl(36,55%,62%)]">до переезда</em><br />
+              <em className="italic font-normal text-gold">до переезда</em><br />
               без стресса
             </h1>
             <p className="font-body text-base text-white/80 leading-relaxed mb-8 max-w-md"
@@ -618,11 +618,11 @@ export default function Index() {
             </p>
             <div className="flex flex-wrap gap-3" style={{ animation: "fadeUp 0.7s 0.5s ease both" }}>
               <button onClick={() => scrollTo("contact")}
-                className="bg-[hsl(36,55%,62%)] text-background font-body text-sm px-7 py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors">
+                className="bg-gold text-background font-body text-sm px-7 py-3.5 hover:bg-[hsl(40,55%,44%)] transition-colors">
                 Заказать замер
               </button>
               <button onClick={() => scrollTo("calculator")}
-                className="border border-white/60 font-body text-sm text-white px-7 py-3.5 hover:border-[hsl(36,55%,62%)] hover:text-[hsl(36,55%,62%)] transition-colors">
+                className="border border-white/60 font-body text-sm text-white px-7 py-3.5 hover:border-[hsl(var(--gold))] hover:text-[hsl(var(--gold))] transition-colors">
                 Просчитать бюджет
               </button>
             </div>
@@ -637,7 +637,7 @@ export default function Index() {
             <div className="grid grid-cols-2 gap-px bg-white/10">
               {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
                 <div key={n} className="bg-black/35 backdrop-blur-md p-8">
-                  <div className="font-display text-6xl font-medium text-[hsl(36,55%,62%)] mb-2 leading-none">{n}</div>
+                  <div className="font-display text-6xl font-medium text-gold mb-2 leading-none">{n}</div>
                   <div className="font-body text-sm text-white/80 tracking-wide">{l}</div>
                 </div>
               ))}
@@ -648,7 +648,7 @@ export default function Index() {
             style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
             {[["400+","проектов"],["22","года опыта"],["3–6 мес","на квартиру"],["Вся РФ","и Европа"]].map(([n, l]) => (
               <div key={n} className="bg-black/40 backdrop-blur-sm px-4 py-3">
-                <div className="font-display text-2xl font-medium text-[hsl(36,55%,62%)] mb-0.5">{n}</div>
+                <div className="font-display text-2xl font-medium text-gold mb-0.5">{n}</div>
                 <div className="font-body text-xs text-white/70">{l}</div>
               </div>
             ))}
@@ -664,7 +664,7 @@ export default function Index() {
       <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <Reveal>
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Проблема</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Проблема</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
               Вы до сих пор делаете всё сами?
             </h2>
@@ -672,18 +672,18 @@ export default function Index() {
             <ul className="space-y-3 mb-8">
               {PROBLEMS.map((p, i) => (
                 <li key={i} className="flex items-start gap-3 font-body text-sm text-foreground/75">
-                  <span className="text-[hsl(36,55%,62%)] mt-0.5 flex-shrink-0">—</span>
+                  <span className="text-gold mt-0.5 flex-shrink-0">—</span>
                   {p}
                 </li>
               ))}
             </ul>
-            <div className="border-l-2 border-[hsl(36,55%,62%)] pl-5 py-1">
-              <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-[hsl(36,55%,62%)]">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
+            <div className="border-l-2 border-gold pl-5 py-1">
+              <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-gold">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
             </div>
           </Reveal>
           <Reveal delay={0.15} className="relative">
             <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[420px] object-cover" loading="lazy" />
-            <div className="absolute top-6 -right-2 md:-right-4 bg-[hsl(36,55%,62%)] px-5 py-3">
+            <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
               <p className="font-body text-xs text-background font-medium">Авторский надзор на каждом этапе</p>
             </div>
           </Reveal>
@@ -700,25 +700,25 @@ export default function Index() {
               {/* Плашка с именем */}
               <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border px-7 py-5">
                 <p className="font-display text-xl font-medium text-foreground">Анастасия Белецкая</p>
-                <p className="font-body text-xs tracking-[0.2em] text-[hsl(36,55%,62%)] uppercase mt-1">Основатель и главный архитектор Студии ДА</p>
+                <p className="font-body text-xs tracking-[0.2em] text-gold uppercase mt-1">Основатель и главный архитектор Студии ДА</p>
               </div>
               {/* Акцентный уголок */}
-              <div className="absolute top-6 -left-3 w-6 h-24 bg-[hsl(36,55%,62%)]" />
+              <div className="absolute top-6 -left-3 w-6 h-24 bg-gold" />
             </div>
           </Reveal>
 
           {/* Текст */}
           <Reveal delay={0.15} className="order-1 md:order-2">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Наша миссия</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Наша миссия</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-7">
               Создавать пространство,<br />
-              <em className="italic font-normal text-[hsl(36,55%,62%)]">которое меняет жизнь</em>
+              <em className="italic font-normal text-gold">которое меняет жизнь</em>
             </h2>
             <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
               Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — переводить ваши мечты в конкретное, функциональное и красивое пространство, без стресса и лишних затрат.
             </p>
 
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-6 section-rule">Наши ценности</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-6 section-rule">Наши ценности</p>
             <ul className="space-y-5">
               {[
                 { icon: "Gem",           title: "Честность",       desc: "Прозрачный бюджет, чёткие сроки и никаких скрытых расходов — с первой встречи до переезда." },
@@ -727,8 +727,8 @@ export default function Index() {
                 { icon: "Leaf",           title: "Ответственность",  desc: "Мы берём проект до конца — не пропадаем после согласования, а сопровождаем до финальной уборки." },
               ].map((v, i) => (
                 <li key={i} className="flex items-start gap-4">
-                  <div className="w-9 h-9 border border-[hsl(36,55%,62%)]/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name={v.icon as "Gem"} size={15} className="text-[hsl(36,55%,62%)]" />
+                  <div className="w-9 h-9 border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name={v.icon as "Gem"} size={15} className="text-gold" />
                   </div>
                   <div>
                     <p className="font-body text-sm font-medium text-foreground mb-0.5">{v.title}</p>
@@ -745,23 +745,23 @@ export default function Index() {
       <section id="process" aria-label="Этапы работы студии дизайна интерьера" className="py-14">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Как мы работаем</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Как мы работаем</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Процесс создания вашего интерьера</h2>
           </Reveal>
           <div className="divide-y divide-border">
             {STEPS.map((s, i) => (
               <Reveal key={i} delay={i * 0.04}>
                 <div className="grid md:grid-cols-[80px_1fr_1fr] gap-4 py-7 group hover:bg-card transition-colors px-2">
-                  <span className="font-display text-3xl font-light text-[hsl(36,45%,72%)] group-hover:text-[hsl(36,55%,55%)] transition-colors">{s.n}</span>
+                  <span className="font-display text-3xl font-light text-gold/50 group-hover:text-gold transition-colors">{s.n}</span>
                   <h3 className="font-display text-xl font-medium text-foreground self-center">{s.title}</h3>
                   <p className="font-body text-sm text-muted-foreground leading-relaxed self-center">{s.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.1} className="mt-10 p-6 border border-[hsl(36,55%,62%)]/30 bg-card">
+          <Reveal delay={0.1} className="mt-10 p-6 border border-gold/30 bg-card">
             <p className="font-body text-sm text-foreground">
-              <span className="text-[hsl(36,55%,62%)] font-medium">Итог:</span> вы получаете не просто «дизайн-проект», а готовый интерьер, в который можно сразу въезжать и жить.
+              <span className="text-gold font-medium">Итог:</span> вы получаете не просто «дизайн-проект», а готовый интерьер, в который можно сразу въезжать и жить.
             </p>
           </Reveal>
         </div>
@@ -771,15 +771,15 @@ export default function Index() {
       <section id="features" aria-label="Преимущества студии дизайна интерьера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Почему мы</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Почему мы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Почему клиенты в России выбирают нас</h2>
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {FEATURES.map((f, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div className="bg-background p-7 h-full group hover:bg-card transition-colors">
-                  <div className="w-9 h-9 border border-border flex items-center justify-center mb-5 group-hover:border-[hsl(36,55%,62%)] transition-colors">
-                    <Icon name={f.icon as "Users" | "Receipt" | "Fingerprint" | "ClipboardList" | "ShieldCheck"} size={16} className="text-muted-foreground group-hover:text-[hsl(36,55%,62%)] transition-colors" fallback="Star" />
+                  <div className="w-9 h-9 border border-border flex items-center justify-center mb-5 group-hover:border-gold transition-colors">
+                    <Icon name={f.icon as "Users" | "Receipt" | "Fingerprint" | "ClipboardList" | "ShieldCheck"} size={16} className="text-muted-foreground group-hover:text-gold transition-colors" fallback="Star" />
                   </div>
                   <h3 className="font-display text-lg font-medium text-foreground mb-3">{f.title}</h3>
                   <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
@@ -800,7 +800,7 @@ export default function Index() {
             <img src={IMG_RESULT} alt="Готовый дизайн интерьера квартиры — результат работы студии" className="w-full h-[380px] object-cover" loading="lazy" />
           </Reveal>
           <Reveal className="order-1 md:order-2">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Для кого</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Для кого</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
               Для тех, кто ценит своё время
             </h2>
@@ -812,8 +812,8 @@ export default function Index() {
                 "Готов доверить проект команде, которая работает под ключ",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 border border-[hsl(36,55%,62%)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name="Check" size={11} className="text-[hsl(36,55%,62%)]" />
+                  <div className="w-5 h-5 border border-gold flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="Check" size={11} className="text-gold" />
                   </div>
                   <span className="font-body text-sm text-foreground/80">{item}</span>
                 </li>
@@ -830,7 +830,7 @@ export default function Index() {
       <section id="reviews" aria-label="Отзывы клиентов студии дизайна интерьера" className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-12">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Отзывы</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Отзывы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Что говорят клиенты</h2>
           </Reveal>
           <ReviewsGrid />
@@ -842,7 +842,7 @@ export default function Index() {
       <section id="faq" aria-label="Частые вопросы о дизайне интерьера" className="py-14">
         <div className="max-w-3xl mx-auto px-6">
           <Reveal className="mb-12">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Вопросы</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Вопросы</p>
             <h2 className="font-display text-4xl font-medium text-foreground">Часто задаваемые вопросы</h2>
           </Reveal>
           <div className="divide-y divide-border">
@@ -850,10 +850,10 @@ export default function Index() {
               <Reveal key={i} delay={i * 0.05}>
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full text-left py-6 flex items-start justify-between gap-4 group">
-                  <span className="font-display text-lg font-medium text-foreground group-hover:text-[hsl(36,55%,62%)] transition-colors">
+                  <span className="font-display text-lg font-medium text-foreground group-hover:text-gold transition-colors">
                     {item.q}
                   </span>
-                  <Icon name={openFaq === i ? "Minus" : "Plus"} size={16} className="text-[hsl(36,55%,62%)] flex-shrink-0 mt-1.5" />
+                  <Icon name={openFaq === i ? "Minus" : "Plus"} size={16} className="text-gold flex-shrink-0 mt-1.5" />
                 </button>
                 {openFaq === i && (
                   <div className="pb-6" style={{ animation: "fadeUp 0.3s ease both" }}>
@@ -867,11 +867,11 @@ export default function Index() {
       </section>
 
       {/* CALCULATOR */}
-      <section id="calculator" aria-label="Калькулятор стоимости дизайна интерьера" className="py-14 border-y border-border bg-background">
+      <section id="calculator" aria-label="Калькулятор стоимости дизайна интерьера" className="py-14 border-y border-gold/20 bg-charcoal">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-4 section-rule">Онлайн-расчёт</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">Рассчитайте стоимость проекта</h2>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule-dark">Онлайн-расчёт</p>
+            <h2 className="font-display text-4xl font-medium text-white">Рассчитайте стоимость проекта</h2>
           </Reveal>
 
           <Reveal className="grid md:grid-cols-2 gap-12 items-start">
@@ -880,30 +880,30 @@ export default function Index() {
               {/* Area */}
               <div>
                 <div className="flex justify-between items-baseline mb-3">
-                  <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase">Площадь объекта</label>
-                  <span className="font-display text-3xl font-medium text-[hsl(36,55%,62%)]">{calcArea} м²</span>
+                  <label className="font-body text-xs tracking-[0.25em] text-white/50 uppercase">Площадь объекта</label>
+                  <span className="font-display text-3xl font-medium text-gold">{calcArea} м²</span>
                 </div>
                 <input
                   type="range" min={20} max={600} step={5} value={calcArea}
                   onChange={e => setCalcArea(+e.target.value)}
-                  className="w-full h-px bg-border appearance-none cursor-pointer accent-[hsl(36,55%,62%)]"
-                  style={{ background: `linear-gradient(to right, hsl(36,55%,62%) ${((calcArea - 20) / 580) * 100}%, hsl(var(--border)) ${((calcArea - 20) / 580) * 100}%)` }}
+                  className="w-full h-px appearance-none cursor-pointer accent-gold"
+                  style={{ background: `linear-gradient(to right, hsl(var(--gold)) ${((calcArea - 20) / 580) * 100}%, rgba(255,255,255,0.15) ${((calcArea - 20) / 580) * 100}%)` }}
                 />
                 <div className="flex justify-between mt-2">
-                  <span className="font-body text-xs text-muted-foreground">20 м²</span>
-                  <span className="font-body text-xs text-muted-foreground">600 м²</span>
+                  <span className="font-body text-xs text-white/30">20 м²</span>
+                  <span className="font-body text-xs text-white/30">600 м²</span>
                 </div>
               </div>
 
               {/* Object */}
               <div>
-                <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase block mb-3">Тип объекта</label>
+                <label className="font-body text-xs tracking-[0.25em] text-white/50 uppercase block mb-3">Тип объекта</label>
                 <div className="grid grid-cols-2 gap-2">
                   {CALC_OBJECTS.map((o, i) => (
                     <button key={i} onClick={() => setCalcObj(i)}
                       className={`py-2.5 px-3 font-body text-xs transition-colors text-left ${calcObj === i
-                        ? "bg-[hsl(36,55%,62%)] text-background"
-                        : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                        ? "bg-gold text-charcoal font-medium"
+                        : "border border-white/20 text-white/50 hover:border-gold hover:text-gold"}`}>
                       {o.label}
                     </button>
                   ))}
@@ -912,15 +912,15 @@ export default function Index() {
 
               {/* Package */}
               <div>
-                <label className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase block mb-3">Пакет услуг</label>
+                <label className="font-body text-xs tracking-[0.25em] text-white/50 uppercase block mb-3">Пакет услуг</label>
                 <div className="space-y-2">
                   {CALC_PACKAGES.map((p, i) => (
                     <button key={i} onClick={() => setCalcPkg(i)}
                       className={`w-full py-3 px-4 font-body text-sm transition-colors flex items-center justify-between ${calcPkg === i
-                        ? "bg-[hsl(36,55%,62%)] text-background"
-                        : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                        ? "bg-gold text-charcoal"
+                        : "border border-white/20 text-white/50 hover:border-gold hover:text-gold"}`}>
                       <span className="font-medium">{p.label}</span>
-                      <span className={`text-xs ${calcPkg === i ? "text-background/70" : "text-muted-foreground"}`}>{p.desc}</span>
+                      <span className={`text-xs ${calcPkg === i ? "text-charcoal/70" : "text-white/30"}`}>{p.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -928,41 +928,41 @@ export default function Index() {
             </div>
 
             {/* Result */}
-            <div className="bg-card border border-border p-8 sticky top-20">
-              <p className="font-body text-xs tracking-[0.25em] text-muted-foreground uppercase mb-6">Ориентировочная стоимость</p>
+            <div className="bg-white/5 border border-gold/30 p-8 sticky top-20">
+              <p className="font-body text-xs tracking-[0.25em] text-white/40 uppercase mb-6">Ориентировочная стоимость</p>
 
               <div className="mb-8">
-                <div className="font-display text-6xl font-medium text-[hsl(36,55%,62%)] leading-none mb-2">
+                <div className="font-display text-6xl font-medium text-gold leading-none mb-2">
                   {calcPrice.toLocaleString("ru-RU")}
                 </div>
-                <div className="font-body text-xl text-muted-foreground">рублей</div>
+                <div className="font-body text-xl text-white/40">рублей</div>
               </div>
 
-              <div className="space-y-3 mb-8 pb-8 border-b border-border">
+              <div className="space-y-3 mb-8 pb-8 border-b border-white/10">
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Площадь</span>
-                  <span className="text-foreground">{calcArea} м²</span>
+                  <span className="text-white/40">Площадь</span>
+                  <span className="text-white/80">{calcArea} м²</span>
                 </div>
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Тип объекта</span>
-                  <span className="text-foreground">{CALC_OBJECTS[calcObj].label}</span>
+                  <span className="text-white/40">Тип объекта</span>
+                  <span className="text-white/80">{CALC_OBJECTS[calcObj].label}</span>
                 </div>
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Пакет</span>
-                  <span className="text-foreground">{CALC_PACKAGES[calcPkg].label}</span>
+                  <span className="text-white/40">Пакет</span>
+                  <span className="text-white/80">{CALC_PACKAGES[calcPkg].label}</span>
                 </div>
                 <div className="flex justify-between font-body text-sm">
-                  <span className="text-muted-foreground">Ставка за м²</span>
-                  <span className="text-foreground">{(CALC_PACKAGES[calcPkg].pricePerSqm * CALC_OBJECTS[calcObj].mult).toLocaleString("ru-RU")} ₽</span>
+                  <span className="text-white/40">Ставка за м²</span>
+                  <span className="text-white/80">{(CALC_PACKAGES[calcPkg].pricePerSqm * CALC_OBJECTS[calcObj].mult).toLocaleString("ru-RU")} ₽</span>
                 </div>
               </div>
 
-              <p className="font-body text-xs text-muted-foreground mb-5 leading-relaxed">
+              <p className="font-body text-xs text-white/30 mb-5 leading-relaxed">
                 Расчёт ориентировочный. Точная стоимость определяется после замера и обсуждения деталей.
               </p>
 
               <button onClick={() => scrollTo("contact")}
-                className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors">
+                className="w-full bg-gold text-charcoal font-body text-sm py-3.5 hover:bg-[hsl(40,55%,44%)] transition-colors">
                 Обсудить проект
               </button>
             </div>
@@ -974,7 +974,7 @@ export default function Index() {
       <section id="contact" className="py-14 bg-card border-t border-border">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
           <Reveal>
-            <p className="font-body text-xs tracking-[0.3em] text-[hsl(36,55%,62%)] uppercase mb-5 section-rule">Начать проект</p>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Начать проект</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
               Хотите свой интерьер уже сегодня?
             </h2>
@@ -982,8 +982,8 @@ export default function Index() {
             <ul className="space-y-3 mb-8">
               {["Бесплатный предварительный расчёт бюджета","План первого этапа работ","Список документов, которые нужно подготовить"].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 border border-[hsl(36,55%,62%)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name="Check" size={11} className="text-[hsl(36,55%,62%)]" />
+                  <div className="w-5 h-5 border border-gold flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="Check" size={11} className="text-gold" />
                   </div>
                   <span className="font-body text-sm text-foreground/80">{item}</span>
                 </li>
@@ -996,7 +996,7 @@ export default function Index() {
                 { icon: "MapPin", text: "Москва, Санкт-Петербург, вся Россия" },
               ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center gap-3">
-                  <Icon name={icon as "Phone" | "Mail" | "MapPin"} size={14} className="text-[hsl(36,55%,62%)]" fallback="Info" />
+                  <Icon name={icon as "Phone" | "Mail" | "MapPin"} size={14} className="text-gold" fallback="Info" />
                   <span className="font-body text-sm text-muted-foreground">{text}</span>
                 </div>
               ))}
@@ -1005,9 +1005,9 @@ export default function Index() {
 
           <Reveal delay={0.1}>
             {formState === "success" ? (
-              <div className="border border-[hsl(36,55%,62%)] p-10 flex flex-col items-center text-center gap-4">
-                <div className="w-12 h-12 border border-[hsl(36,55%,62%)] flex items-center justify-center">
-                  <Icon name="Check" size={22} className="text-[hsl(36,55%,62%)]" />
+              <div className="border border-gold p-10 flex flex-col items-center text-center gap-4">
+                <div className="w-12 h-12 border border-gold flex items-center justify-center">
+                  <Icon name="Check" size={22} className="text-gold" />
                 </div>
                 <h3 className="font-display text-2xl font-medium text-foreground">Заявка принята!</h3>
                 <p className="font-body text-sm text-muted-foreground max-w-xs">
@@ -1021,9 +1021,9 @@ export default function Index() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {promoApplied && (
-                  <div className="flex items-center gap-3 bg-[hsl(36,55%,62%)]/10 border border-[hsl(36,55%,62%)]/40 px-4 py-3">
-                    <Icon name="Tag" size={14} className="text-[hsl(36,55%,62%)] flex-shrink-0" />
-                    <p className="font-body text-xs text-foreground">Скидка <span className="font-semibold text-[hsl(36,55%,62%)]">10%</span> применена — укажите промокод <span className="font-semibold">САЙТ10</span> при общении с менеджером</p>
+                  <div className="flex items-center gap-3 bg-gold/10 border border-gold/40 px-4 py-3">
+                    <Icon name="Tag" size={14} className="text-gold flex-shrink-0" />
+                    <p className="font-body text-xs text-foreground">Скидка <span className="font-semibold text-gold">10%</span> применена — укажите промокод <span className="font-semibold">САЙТ10</span> при общении с менеджером</p>
                   </div>
                 )}
                 <div className="grid grid-cols-2 gap-4">
@@ -1034,7 +1034,7 @@ export default function Index() {
                       value={form.name}
                       onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                       placeholder="Как вас зовут?"
-                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold transition-colors"
                     />
                   </div>
                   <div>
@@ -1044,7 +1044,7 @@ export default function Index() {
                       value={form.phone}
                       onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
                       placeholder="+7 (___) ___-__-__"
-                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                      className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold transition-colors"
                     />
                   </div>
                 </div>
@@ -1055,7 +1055,7 @@ export default function Index() {
                     value={form.email}
                     onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                     placeholder="your@email.com"
-                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors"
+                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold transition-colors"
                   />
                 </div>
                 <div>
@@ -1064,8 +1064,8 @@ export default function Index() {
                     {["Квартира", "Дом", "Офис", "Другое"].map(t => (
                       <button key={t} type="button" onClick={() => setForm(p => ({ ...p, type: t }))}
                         className={`py-2.5 font-body text-xs transition-colors ${form.type === t
-                          ? "bg-[hsl(36,55%,62%)] text-background"
-                          : "border border-border text-muted-foreground hover:border-[hsl(36,55%,62%)] hover:text-foreground"}`}>
+                          ? "bg-gold text-background"
+                          : "border border-border text-muted-foreground hover:border-gold hover:text-foreground"}`}>
                         {t}
                       </button>
                     ))}
@@ -1078,7 +1078,7 @@ export default function Index() {
                     onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                     placeholder="Расскажите о вашем проекте: площадь, пожелания, сроки..."
                     rows={3}
-                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-[hsl(36,55%,62%)] transition-colors resize-none"
+                    className="w-full bg-transparent border border-border px-4 py-3 font-body text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-gold transition-colors resize-none"
                   />
                 </div>
                 {formState === "error" && (
@@ -1087,20 +1087,20 @@ export default function Index() {
                 <label className="flex items-start gap-3 cursor-pointer group">
                   <div
                     onClick={() => setAgreed(v => !v)}
-                    className={`w-4 h-4 flex-shrink-0 mt-0.5 border flex items-center justify-center transition-colors cursor-pointer ${agreed ? "bg-[hsl(36,55%,62%)] border-[hsl(36,55%,62%)]" : "border-border group-hover:border-[hsl(36,55%,62%)]"}`}
+                    className={`w-4 h-4 flex-shrink-0 mt-0.5 border flex items-center justify-center transition-colors cursor-pointer ${agreed ? "bg-gold border-gold" : "border-border group-hover:border-gold"}`}
                   >
                     {agreed && <Icon name="Check" size={10} className="text-background" />}
                   </div>
                   <span className="font-body text-xs text-muted-foreground leading-relaxed">
                     Я согласен(а) на обработку персональных данных в соответствии с{" "}
                     <button type="button" onClick={() => setPrivacyOpen(true)}
-                      className="text-[hsl(36,55%,62%)] underline underline-offset-2 hover:text-[hsl(36,55%,50%)] transition-colors">
+                      className="text-gold underline underline-offset-2 hover:text-[hsl(40,55%,38%)] transition-colors">
                       Политикой конфиденциальности
                     </button>
                   </span>
                 </label>
                 <button type="submit" disabled={formState === "loading" || !agreed}
-                  className="w-full bg-[hsl(36,55%,62%)] text-background font-body text-sm py-3.5 hover:bg-[hsl(36,55%,55%)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  className="w-full bg-gold text-background font-body text-sm py-3.5 hover:bg-[hsl(40,55%,44%)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                   {formState === "loading" ? (
                     <>
                       <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -1118,14 +1118,14 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-background border-t border-border py-8">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col">
-            <span className="font-display text-base tracking-wide text-foreground/70">Студия ДА</span>
-            <span className="font-body text-[10px] tracking-[0.15em] text-muted-foreground uppercase">Анастасия Белецкая</span>
+      <footer className="bg-charcoal border-t border-gold/20 py-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col items-center md:items-start">
+            <span className="font-display text-xl tracking-widest text-gold">STUDIODA</span>
+            <span className="font-body text-[10px] tracking-[0.25em] text-white/40 uppercase mt-1">С заботой о вас и вашем пространстве</span>
           </div>
-          <p className="font-body text-xs text-muted-foreground">© 2026 Студия дизайна и архитектуры Анастасии Белецкой</p>
-          <button onClick={() => setPrivacyOpen(true)} className="font-body text-xs text-muted-foreground hover:text-[hsl(36,55%,62%)] transition-colors underline underline-offset-2">
+          <p className="font-body text-xs text-white/30">© 2026 Студия дизайна и архитектуры Анастасии Белецкой</p>
+          <button onClick={() => setPrivacyOpen(true)} className="font-body text-xs text-white/40 hover:text-gold transition-colors underline underline-offset-2">
             Политика конфиденциальности
           </button>
         </div>
