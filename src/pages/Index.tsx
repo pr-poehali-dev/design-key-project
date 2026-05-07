@@ -563,6 +563,13 @@ const PORTFOLIO = [
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/ba6ea86d-2a60-4051-a5ae-23bcaf96f104.JPG",
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/5882f067-8ccf-4d2b-8ddd-4a89b48d1a18.JPG",
   ] },
+  { category: "house", title: "Дизайн коттеджа, Владивосток", desc: "Коттедж в эко-современном стиле: прихожая с мраморным полом и декоративным ковром-вставкой, ванные с деревянной плиткой под сосну и игровой геометрической плиткой пыльно-розового и тёмно-синего цветов. Спальня с фотообоями из пальмовых листьев и синим бархатным изголовьем — мягкий, курортный характер на краю страны.", imgs: [
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/0d4b3867-0a15-41ae-846a-fc763475abd0.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/919a123b-a55a-48d4-b021-870195ba6c63.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/8853d550-0cc8-468f-9afe-3424997837f8.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/4283b12a-87cf-4fb4-8afb-799b48458c96.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/cc0dc417-7fe1-40b1-b96a-fb6752c6931b.JPG",
+  ] },
   { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg"] },
   { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg"] },
   { category: "house", title: "Дизайн спальни — тропический арт и бархатный уют", desc: "Спальня в стиле эклектика: изголовье кровати из голубого бархата с геометрическим рельефом, фотообои с тропическими мотивами, деревянные панели в «ёлочку» и перламутровые бра. Богатая игра текстур — янтарные, бежевые и графичные подушки — создаёт тёплую, обволакивающую атмосферу.", imgs: [
