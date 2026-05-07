@@ -557,7 +557,12 @@ const PORTFOLIO = [
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/94633c51-24ce-4d34-824a-3743aa526307.JPG",
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/c980794f-4b63-464c-a855-504961d96ea0.JPG",
   ]},
-  { category: "house", title: "Дом в коттеджном посёлке", desc: "Функциональный интерьер под семью с детьми, акцент на безопасности, зоне хранения и комфортном пространстве.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg"] },
+  { category: "house", title: "Дизайн ванной комнаты в коттеджном посёлке", desc: "Роскошная ванная с отделкой из чёрного мрамора с золотыми прожилками и светлого мрамора. Отдельностоящая ванна, подвесная тумба с чёрной столешницей, деревянные акценты и тёплая подсветка создают атмосферу пятизвёздочного спа.", imgs: [
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/5fab6bbe-b972-43e1-9e1a-52da45732a99.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/8852624c-642d-4893-9451-32f6b479c375.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/ba6ea86d-2a60-4051-a5ae-23bcaf96f104.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/5882f067-8ccf-4d2b-8ddd-4a89b48d1a18.JPG",
+  ] },
   { category: "office", title: "Офис стартапа, 120 м²", desc: "Современный open-space с кабинетами, переговорной и зоной отдыха. Интерьер для продуктивности и командной атмосферы.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg"] },
   { category: "commercial", title: "Заведение в центре города", desc: "Уникальный концептуальный интерьер с продуманным освещением, зонированием и сценарием прохода гостей.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/ef0d2f3e-c88d-474c-a85d-d87854d5baea.jpg"] },
   { category: "commercial", title: "Бутик одежды", desc: "Интерьер, который подчёркивает бренд и создаёт комфортную атмосферу для покупателей и примерок.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/3f31d253-9c83-4ea2-b720-1c25a434d68a.jpg"] },
