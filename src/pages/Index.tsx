@@ -553,6 +553,13 @@ const PORTFOLIO = [
     "https://cdn.poehali.dev/files/267f8c0f-53a2-4cb6-a643-dff07f311c38.jpg",
     "https://cdn.poehali.dev/files/59f11c28-bbd2-4e01-b29e-58de187356c6.jpg",
   ]},
+  { category: "apartment", title: "Квартира в голубом — Полетаева 23А", desc: "Элегантный интерьер с голубыми фасадами кухни, мраморным фартуком с синими прожилками, живописной гостиной с тропическим фотообоем и стильной прихожей.", imgs: [
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/8c140b90-5f9c-48a2-bca0-c5eec766798b.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/68dc3b5f-1224-4eea-83be-6befa5d0dbde.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/745dd1e2-ec26-4fdc-82bf-f66e5e78e6d0.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/98cabc23-e111-4039-936c-f4e4b592ff9f.JPG",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/2dd785d8-8903-40c5-898e-ee5575b893ae.JPG",
+  ]},
 ];
 
 const PORTFOLIO_FILTERS = [
