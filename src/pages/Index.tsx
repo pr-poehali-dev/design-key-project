@@ -444,6 +444,65 @@ function ReviewsGrid() {
   );
 }
 
+function NadsorStrip({ photos }: { photos: string[] }) {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  return (
+    <>
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        {photos.map((src, i) => (
+          <button key={i} onClick={() => setLightbox(i)} className="flex-shrink-0 focus:outline-none">
+            <img
+              src={src}
+              alt={`Авторский надзор ${i + 1}`}
+              className="w-24 h-16 object-cover opacity-75 hover:opacity-100 transition-opacity"
+              loading="lazy"
+            />
+          </button>
+        ))}
+      </div>
+
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white/70 hover:text-gold transition-colors"
+            onClick={() => setLightbox(null)}
+          >
+            <Icon name="X" size={22} />
+          </button>
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-white/70 hover:text-gold transition-colors"
+            onClick={e => { e.stopPropagation(); setLightbox(i => i !== null ? (i - 1 + photos.length) % photos.length : null); }}
+          >
+            <Icon name="ChevronLeft" size={28} />
+          </button>
+          <img
+            src={photos[lightbox]}
+            alt={`Авторский надзор ${lightbox + 1}`}
+            className="max-h-[85vh] max-w-full object-contain"
+            onClick={e => e.stopPropagation()}
+          />
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-white/70 hover:text-gold transition-colors"
+            onClick={e => { e.stopPropagation(); setLightbox(i => i !== null ? (i + 1) % photos.length : null); }}
+          >
+            <Icon name="ChevronRight" size={28} />
+          </button>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {photos.map((_, i) => (
+              <button key={i} onClick={e => { e.stopPropagation(); setLightbox(i); }}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${i === lightbox ? "bg-gold" : "bg-white/30"}`} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 const PORTFOLIO = [
   { category: "apartment", title: "Квартира 80 м², Москва", desc: "Современный минимализм с функциональной кухней-гостиной и скрытыми зонами хранения. Проект под ключ: от замера до комплектации.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/2857c0b1-9dd4-4268-ba37-4968d4984948.jpg"] },
   { category: "apartment", title: "Квартира-студия 45 м²", desc: "Зонирование без перегородок, светлые тона, визуальное расширение пространства. Помощь в выборе мебели под бюджет.", imgs: ["https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/b1eb15fa-7cbf-40e5-9fbc-e90c0bf64dfa.jpg"] },
@@ -809,19 +868,15 @@ export default function Index() {
           </Reveal>
           <Reveal delay={0.15} className="flex flex-col gap-3">
             <div className="relative">
-              <BeforeAfterSlider before={IMG_PROCESS} after={IMG_RESULT} />
+              <BeforeAfterSlider
+                before="https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/df61c9a3-ea6b-4688-b72d-cb2fb09d3af0.jpeg"
+                after="https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/76c7a718-422e-468a-b4df-e6f248d71d34.jpeg"
+              />
+              <div className="absolute bottom-3 left-3 bg-gold/90 text-charcoal font-body text-xs px-3 py-1.5 font-medium">
+                Авторский надзор на каждом этапе
+              </div>
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-              {NADSOR_PHOTOS.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Авторский надзор ${i + 1}`}
-                  className="w-24 h-16 object-cover flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-                  loading="lazy"
-                />
-              ))}
-            </div>
+            <NadsorStrip photos={NADSOR_PHOTOS} />
           </Reveal>
         </div>
       </section>
