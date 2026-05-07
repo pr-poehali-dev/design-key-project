@@ -106,6 +106,15 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+function GoldLine({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, visible } = useVisible();
+  return (
+    <span ref={ref as React.RefObject<HTMLSpanElement>} className={`underline-gold ${visible ? "is-visible" : ""} ${className}`}>
+      {children}
+    </span>
+  );
+}
+
 function MissionPhoto() {
   const { ref, offset } = useParallax(0.08);
   return (
@@ -609,7 +618,7 @@ export default function Index() {
             <h1 className="font-display text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6"
               style={{ animation: "fadeUp 0.7s 0.2s ease both" }}>
               От замера<br />
-              <em className="italic font-normal text-gold">до переезда</em><br />
+              <em className="italic font-normal text-gold"><GoldLine>до переезда</GoldLine></em><br />
               без стресса
             </h1>
             <p className="font-body text-base text-white/80 leading-relaxed mb-8 max-w-md"
@@ -666,7 +675,7 @@ export default function Index() {
           <Reveal>
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Проблема</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
-              Вы до сих пор делаете всё сами?
+              Вы до сих пор <GoldLine>делаете всё сами?</GoldLine>
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-5">Вы устали:</p>
             <ul className="space-y-3 mb-8">
@@ -711,7 +720,7 @@ export default function Index() {
           <Reveal delay={0.15} className="order-1 md:order-2">
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Наша миссия</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-7">
-              Создавать пространство,<br />
+              <GoldLine>Создавать пространство,</GoldLine><br />
               <em className="italic font-normal text-gold">которое меняет жизнь</em>
             </h2>
             <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
@@ -746,7 +755,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Как мы работаем</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">Процесс создания вашего интерьера</h2>
+            <h2 className="font-display text-4xl font-medium text-foreground">Процесс создания <GoldLine>вашего интерьера</GoldLine></h2>
           </Reveal>
           <div className="divide-y divide-border">
             {STEPS.map((s, i) => (
@@ -772,7 +781,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Почему мы</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">Почему клиенты в России выбирают нас</h2>
+            <h2 className="font-display text-4xl font-medium text-foreground">Почему клиенты <GoldLine>в России выбирают нас</GoldLine></h2>
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {FEATURES.map((f, i) => (
@@ -831,7 +840,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Отзывы</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">Что говорят клиенты</h2>
+            <h2 className="font-display text-4xl font-medium text-foreground">Что говорят <GoldLine>клиенты</GoldLine></h2>
           </Reveal>
           <ReviewsGrid />
           <MiniPlayer />
@@ -843,7 +852,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto px-6">
           <Reveal className="mb-12">
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4 section-rule">Вопросы</p>
-            <h2 className="font-display text-4xl font-medium text-foreground">Часто задаваемые вопросы</h2>
+            <h2 className="font-display text-4xl font-medium text-foreground"><GoldLine>Часто задаваемые</GoldLine> вопросы</h2>
           </Reveal>
           <div className="divide-y divide-border">
             {FAQ.map((item, i) => (
@@ -976,7 +985,7 @@ export default function Index() {
           <Reveal>
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Начать проект</p>
             <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
-              Хотите свой интерьер уже сегодня?
+              Хотите <GoldLine>свой интерьер</GoldLine> уже сегодня?
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-6">Отправьте запрос — за 24 часа мы подготовим:</p>
             <ul className="space-y-3 mb-8">
