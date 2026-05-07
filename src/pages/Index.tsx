@@ -629,12 +629,12 @@ export default function Index() {
           </div>
 
           {/* Десктоп: сетка 2×2 */}
-          <div className="hidden md:grid grid-cols-2 gap-px bg-border"
+          <div className="hidden md:grid grid-cols-2 gap-px bg-white/10"
             style={{ animation: "fadeUp 0.7s 0.4s ease both" }}>
             {[["400+","проектов реализовано"],["22","года опыта"],["3–6","месяцев на квартиру"],["Вся","Россия"]].map(([n, l]) => (
-              <div key={n} className="bg-card p-6">
+              <div key={n} className="bg-black/35 backdrop-blur-md p-8">
                 <div className="font-display text-4xl font-medium text-[hsl(36,55%,62%)] mb-1">{n}</div>
-                <div className="font-body text-xs text-muted-foreground">{l}</div>
+                <div className="font-body text-xs text-white/70">{l}</div>
               </div>
             ))}
           </div>
