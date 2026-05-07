@@ -429,14 +429,20 @@ const PORTFOLIO_FILTERS = [
 function PortfolioCard({ p, delay }: { p: typeof PORTFOLIO[0]; delay: number }) {
   const [idx, setIdx] = useState(0);
   const multi = p.imgs.length > 1;
+  const { ref, visible } = useVisible();
   return (
     <Reveal delay={delay}>
       <div className="bg-background group overflow-hidden">
-        <div className="relative overflow-hidden aspect-[4/3]">
+        <div ref={ref} className="relative overflow-hidden aspect-[4/3]">
           <img
             src={p.imgs[idx]}
             alt={p.title}
-            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+            style={{
+              transform: visible ? "translateY(0)" : "translateY(40px)",
+              opacity: visible ? 1 : 0,
+              transition: `transform 0.8s ${delay + 0.1}s cubic-bezier(0.4,0,0.2,1), opacity 0.8s ${delay + 0.1}s ease`,
+            }}
           />
           {multi && (
             <>
@@ -669,36 +675,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* PROBLEM */}
-      <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-14 bg-card border-y border-border">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <Reveal>
-            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Проблема</p>
-            <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
-              Вы до сих пор <GoldLine>делаете всё сами?</GoldLine>
-            </h2>
-            <p className="font-body text-sm text-muted-foreground mb-5">Вы устали:</p>
-            <ul className="space-y-3 mb-8">
-              {PROBLEMS.map((p, i) => (
-                <li key={i} className="flex items-start gap-3 font-body text-sm text-foreground/75">
-                  <span className="text-gold mt-0.5 flex-shrink-0">—</span>
-                  {p}
-                </li>
-              ))}
-            </ul>
-            <div className="border-l-2 border-gold pl-5 py-1">
-              <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-gold">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
-            </div>
-          </Reveal>
-          <Reveal delay={0.15} className="relative">
-            <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[420px] object-cover" loading="lazy" />
-            <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
-              <p className="font-body text-xs text-background font-medium">Авторский надзор на каждом этапе</p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* MISSION & VALUES */}
       <section id="mission" aria-label="Миссия и ценности студии" className="py-14">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
@@ -746,6 +722,36 @@ export default function Index() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PROBLEM */}
+      <section id="about" aria-label="Проблемы при ремонте без дизайнера" className="py-14 bg-card border-y border-border">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <Reveal>
+            <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-5 section-rule">Проблема</p>
+            <h2 className="font-display text-4xl font-medium text-foreground leading-tight mb-6">
+              Вы до сих пор <GoldLine>делаете всё сами?</GoldLine>
+            </h2>
+            <p className="font-body text-sm text-muted-foreground mb-5">Вы устали:</p>
+            <ul className="space-y-3 mb-8">
+              {PROBLEMS.map((p, i) => (
+                <li key={i} className="flex items-start gap-3 font-body text-sm text-foreground/75">
+                  <span className="text-gold mt-0.5 flex-shrink-0">—</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <div className="border-l-2 border-gold pl-5 py-1">
+              <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-gold">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15} className="relative">
+            <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[420px] object-cover" loading="lazy" />
+            <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
+              <p className="font-body text-xs text-background font-medium">Авторский надзор на каждом этапе</p>
+            </div>
           </Reveal>
         </div>
       </section>
