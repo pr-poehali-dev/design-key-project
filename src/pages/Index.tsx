@@ -699,9 +699,29 @@ export default function Index() {
               <GoldLine>Создавать пространство,</GoldLine><br />
               <em className="italic font-normal text-gold">которое меняет жизнь</em>
             </h2>
-            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
-              Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — переводить ваши мечты в конкретное, функциональное и красивое пространство, без стресса и лишних затрат.
+            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-5">
+              Мы верим, что дом — это не просто стены и мебель. Это среда, которая влияет на ваше настроение, здоровье и отношения каждый день. Миссия Студии ДА — создавать пространство, которое отражает индивидуальность каждого клиента.
             </p>
+            <p className="font-body text-sm text-muted-foreground leading-relaxed mb-10">
+              Мы проектируем и реализуем интерьеры, применяя новые технологии и тенденции, учитываем потребности заказчика. Предоставляя техническую и моральную поддержку на каждом этапе реализации проекта. Мы создаём дружескую атмосферу, стремясь к идеальному результату!
+            </p>
+
+            <div className="grid grid-cols-1 gap-4 mb-10">
+              {[
+                { icon: "Wrench", title: "Техническая и психологическая поддержка", desc: "Помогаем клиенту на протяжении всего ремонта — от первого вопроса до финальной уборки." },
+                { icon: "PackageCheck", title: "Комплексный подход", desc: "От покупки материалов до переезда — берём на себя весь путь обустройства пространства." },
+              ].map((v, i) => (
+                <div key={i} className="flex items-start gap-4 p-4 border border-gold/20 bg-card/50">
+                  <div className="w-10 h-10 border border-gold/40 flex items-center justify-center flex-shrink-0 icon-spin-hover">
+                    <Icon name={v.icon as "Wrench"} size={17} className="text-gold icon-spin" />
+                  </div>
+                  <div>
+                    <p className="font-body text-sm font-medium text-foreground mb-1">{v.title}</p>
+                    <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             <p className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-6 section-rule">Наши ценности</p>
             <ul className="space-y-5">
@@ -712,8 +732,8 @@ export default function Index() {
                 { icon: "Leaf",           title: "Ответственность",  desc: "Мы берём проект до конца — не пропадаем после согласования, а сопровождаем до финальной уборки." },
               ].map((v, i) => (
                 <li key={i} className="flex items-start gap-4">
-                  <div className="w-9 h-9 border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name={v.icon as "Gem"} size={15} className="text-gold" />
+                  <div className="w-9 h-9 border border-gold/40 flex items-center justify-center flex-shrink-0 mt-0.5 icon-spin-hover">
+                    <Icon name={v.icon as "Gem"} size={15} className="text-gold icon-spin" />
                   </div>
                   <div>
                     <p className="font-body text-sm font-medium text-foreground mb-0.5">{v.title}</p>
