@@ -544,6 +544,11 @@ const PORTFOLIO = [
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/5ebd90b8-9569-429b-bc81-e8d95c0da36d.jpg",
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/a7125c35-d013-4477-987b-3e9eb042a745.jpg",
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/63a6430b-a962-43a1-a3b2-d5d4d16792bc.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/06815475-02f6-4d3e-9266-54c7d3108836.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/2447733f-8da0-4b70-b153-e7f2fc497b9f.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/dbb0c603-a120-4191-a086-f7f958c944d5.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/31f2f7fc-47a7-4a41-a123-e03eff02abd7.jpg",
+    "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/f15ab7b8-28d6-4ec5-b267-f7ec82767750.jpg",
   ]},
   { category: "house", title: "Дом 250 м², Владивосток. Садгород", desc: "Тёплый современный дом с высокими потолками, кухней-столовой и зоной отдыха у камина. Полный цикл: от замера до мебели.", imgs: [
     "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/c00082a6-6651-44e7-8839-b271318c2494.JPG",
