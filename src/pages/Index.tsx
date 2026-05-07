@@ -121,7 +121,7 @@ const NADSOR_PHOTOS = [
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg",
 ];
 
-function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+function BeforeAfterSlider({ before, after, className = "aspect-[4/3]" }: { before: string; after: string; className?: string }) {
   const [pos, setPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -137,7 +137,7 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden select-none cursor-ew-resize"
+      className={`relative w-full overflow-hidden select-none cursor-ew-resize ${className}`}
       onMouseDown={() => { dragging.current = true; }}
       onMouseUp={() => { dragging.current = false; }}
       onMouseLeave={() => { dragging.current = false; }}
@@ -655,8 +655,8 @@ export default function Index() {
       {/* HERO */}
       <section aria-label="Главный экран" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <BeforeAfterSlider before={IMG_PROCESS} after={IMG_RESULT} />
-          <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+          <img src={IMG_RESULT} alt="Готовый интерьер квартиры под ключ — студия дизайна" className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-16 grid md:grid-cols-2 gap-12 items-center w-full">
@@ -807,12 +807,9 @@ export default function Index() {
               <p className="font-body text-sm text-foreground font-medium">Мы работаем по принципу <span className="text-gold">«единая точка ответственности»</span> — ведём проект от замера до сдачи и переезда.</p>
             </div>
           </Reveal>
-          <Reveal delay={0.15} className="relative flex flex-col gap-4">
+          <Reveal delay={0.15} className="flex flex-col gap-3">
             <div className="relative">
-              <img src={IMG_PROCESS} alt="Процесс работы дизайнера интерьера — авторский надзор на объекте" className="w-full h-[340px] object-cover" loading="lazy" />
-              <div className="absolute top-6 -right-2 md:-right-4 bg-gold px-5 py-3">
-                <p className="font-body text-xs text-charcoal font-medium">Авторский надзор на каждом этапе</p>
-              </div>
+              <BeforeAfterSlider before={IMG_PROCESS} after={IMG_RESULT} />
             </div>
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
               {NADSOR_PHOTOS.map((src, i) => (
@@ -820,7 +817,7 @@ export default function Index() {
                   key={i}
                   src={src}
                   alt={`Авторский надзор ${i + 1}`}
-                  className="w-24 h-16 object-cover flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
+                  className="w-24 h-16 object-cover flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
                   loading="lazy"
                 />
               ))}
