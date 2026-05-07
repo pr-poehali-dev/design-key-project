@@ -580,7 +580,7 @@ export default function Index() {
       <header className="fixed top-0 inset-x-0 z-50 border-b border-gold/20 bg-charcoal/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex flex-col leading-tight">
-            <span className="font-display text-base tracking-widest text-gold">STUDIODA</span>
+            <span className="font-display text-base tracking-widest text-gold">Студия ДА</span>
             <span className="font-body text-[9px] tracking-[0.2em] text-white/40 uppercase">Анастасия Белецкая</span>
           </div>
           <nav className="hidden md:flex items-center gap-7">
@@ -1154,7 +1154,7 @@ export default function Index() {
       <footer className="bg-charcoal border-t border-gold/20 py-10">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center md:items-start">
-            <span className="font-display text-xl tracking-widest text-gold">STUDIODA</span>
+            <span className="font-display text-xl tracking-widest text-gold">Студия ДА</span>
             <span className="font-body text-[10px] tracking-[0.25em] text-white/40 uppercase mt-1">С заботой о вас и вашем пространстве</span>
           </div>
           <p className="font-body text-xs text-white/30">© 2026 Студия дизайна и архитектуры Анастасии Белецкой</p>
