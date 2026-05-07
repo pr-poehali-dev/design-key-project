@@ -115,10 +115,7 @@ function GoldLine({ children, className = "" }: { children: React.ReactNode; cla
 }
 
 const NADSOR_PHOTOS = [
-  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/7b882352-dada-4fbc-b04a-d1444e58173b.jpg",
-  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/1919da49-7c9a-4fbd-a97b-fa60e649b726.jpg",
-  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/9121f40c-d821-4954-a4ef-30f2f8e748df.jpg",
-  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/files/d2a097fc-9b5c-4eb7-998e-a83ed81da19b.jpg",
+  "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/df61c9a3-ea6b-4688-b72d-cb2fb09d3af0.jpeg",
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/f78081bb-6384-4da1-9890-3bae50de289c.jpeg",
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/95900c7c-bbd9-4c36-a4cd-c8aa5ca44731.jpeg",
   "https://cdn.poehali.dev/projects/0c6d90d6-19cc-4261-a25d-08b53a5d1acd/bucket/419a14f8-8865-4968-9246-728b56d3d8d7.JPG",
@@ -451,17 +448,49 @@ function ReviewsGrid() {
 
 function NadsorStrip({ photos }: { photos: string[] }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+  const moved = useRef(false);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    dragging.current = true;
+    moved.current = false;
+    startX.current = e.pageX - (stripRef.current?.offsetLeft ?? 0);
+    scrollLeft.current = stripRef.current?.scrollLeft ?? 0;
+  };
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!dragging.current || !stripRef.current) return;
+    const x = e.pageX - stripRef.current.offsetLeft;
+    const walk = x - startX.current;
+    if (Math.abs(walk) > 3) moved.current = true;
+    stripRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+  const onMouseUp = () => { dragging.current = false; };
 
   return (
     <>
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+      <div
+        ref={stripRef}
+        className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
+      >
         {photos.map((src, i) => (
-          <button key={i} onClick={() => setLightbox(i)} className="flex-shrink-0 focus:outline-none">
+          <button
+            key={i}
+            className="flex-shrink-0 focus:outline-none"
+            onClick={() => { if (!moved.current) setLightbox(i); }}
+          >
             <img
               src={src}
               alt={`Авторский надзор ${i + 1}`}
               className="w-24 h-16 object-cover opacity-75 hover:opacity-100 transition-opacity"
               loading="lazy"
+              draggable={false}
             />
           </button>
         ))}
