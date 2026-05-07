@@ -792,17 +792,17 @@ export default function Index() {
               </div>
               <div className="absolute top-6 -left-3 w-6 h-24 bg-gold" />
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: "Wrench", title: "Техническая и моральная поддержка", desc: "Помогаем клиенту на протяжении всего ремонта — от первого вопроса до финальной уборки." },
-                { icon: "PackageCheck", title: "Комплексный подход", desc: "От покупки материалов до переезда — берём на себя весь путь обустройства пространства." },
+                { icon: "Wrench", title: "Техническая и моральная поддержка", desc: "От первого вопроса до финальной уборки." },
+                { icon: "PackageCheck", title: "Комплексный подход", desc: "От покупки материалов до переезда." },
               ].map((v, i) => (
-                <div key={i} className="flex items-start gap-4 p-4 border border-gold/20 bg-card/50">
-                  <div className="w-10 h-10 border border-gold/40 flex items-center justify-center flex-shrink-0">
-                    <Icon name={v.icon as "Wrench"} size={17} className="text-gold icon-spin" />
+                <div key={i} className="flex flex-col items-center text-center gap-3 p-4 border border-gold/20 bg-card/50">
+                  <div className="w-11 h-11 border border-gold/40 flex items-center justify-center flex-shrink-0">
+                    <Icon name={v.icon as "Wrench"} size={18} className="text-gold icon-spin" />
                   </div>
                   <div>
-                    <p className="font-body text-sm font-medium text-foreground mb-1">{v.title}</p>
+                    <p className="font-body text-xs font-medium text-foreground mb-1">{v.title}</p>
                     <p className="font-body text-xs text-muted-foreground leading-relaxed">{v.desc}</p>
                   </div>
                 </div>
